@@ -1,5 +1,5 @@
 Grupni projekat iz predmeta Informacioni sistemi na master studijama na Matematičkom fakultetu. 
-Tema je Informacioni sistem veterinarske klinke. 
+Tema je Informacioni sistem veterinarske klinike. 
 
 Članovi tima: 
 Mina Ristić, 1119/2025
