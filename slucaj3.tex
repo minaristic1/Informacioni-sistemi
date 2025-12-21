@@ -16,16 +16,26 @@
 \indent \textbf{Glavni tok:}
 \begin{enumerate}
     \item Veterinar otvara katalog lijekova i opreme. 
-    \item Veterinar bira artikal koji je koristio i unosi kolicinu koja je potrosena.
-    \item Veterinar potvrdjuje unos.
-    \item Sistem proverava da li je unos validan i ažurira stanje zaliha.
+    \item Veterinar bira artikal koji je koristio i unosi kolicinu koja je potrosena. 
+    \item Veterinar potvrdjuje unos. 
+    \item Sistem proverava da li je unos validan i ažurira stanje zaliha. Ako količina premašuje raspoloživu zalihu, ide se u alternativni tok A1. 
+    Ako traženi artikal nije u katalogu, ide se u A2.
     \item Ako novo stanje padne ispod definisanog minimuma, sistem generiše obaveštenje za menadžera.
-    \item Veterinar ponavlja korake 2-5 za svaki dodatni artikal. 
+    \item Veterinar ponavlja korake 2-5 ukoliko ima jos artikala koje je koristio. Ako nema, veterinar zavrsava unos. 
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
 \begin{enumerate}
-    \item[A1.]\textbf{Uneta kolicina je veca od dostupne zalihe} Sistem odbija transakciju i prikazuje odgovarajuce obavestenje.
-    \item[A2.]\textbf{Veterinar predlaze novi artikal za narudzbinu} Veterinar unosi potrošnju i primeti da je potreban artikal koji se obično ne naručuje ili nije u katalogu. Veterinar šalje predlog menadžeru putem sistema (notifikacija ili lista predloga).
+    \item[A1.]\textbf{Uneta kolicina je veca od dostupne zalihe} 
+    \begin{enumerate}
+        \item[1.] Sistem odbija unos i prikazuje poruku o nedovoljnoj zalihi.
+        \item[2.] Sistem vraća veterinara na izbor artikla (glavni tok, korak 2).
+    \end{enumerate}
+    \item[A2.]\textbf{Veterinar predlaze novi artikal za narudzbinu} 
+        \begin{enumerate}
+            \item[1.] Veterinar bira opciju „Predlog nabavke“.
+            \item[2.] Sistem šalje obaveštenje menadžeru ili dodaje stavku u listu predloga.
+            \item[3.] Veterinar se vraća na glavni tok i nastavlja korak 2 za neki drugi artikal.
+        \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Kreiranje narudzbine}
@@ -35,18 +45,37 @@
 \indent \textbf{Postuslov} - Narudžbenica je kreirana i evidentirana u sistemu. \\
 \indent \textbf{Glavni tok:}
 \begin{enumerate}
-    \item Sistem generiše obaveštenja menadžeru o artiklima čija je zaliha ispod minimuma i/o predlozima od veterinara za artikle koji ranije nisu naručivani.
+    \item Sistem generiše obaveštenja menadžeru o artiklima čija je zaliha ispod minimuma i predlozima od veterinara za artikle koji ranije nisu naručivani.
     \item Menadžer otvara obaveštenja i pristupa listi artikala.
-    \item Menadžer bira koje artikle želi da naruči.
+    \item Menadžer bira artikal koji želi da naruči. Ako menadžer želi da doda artikle koji nisu među obaveštenjima, ide se u alternativni tok A1.
     \item Sistem, po potrebi, predlaže količinu na osnovu istorije potrošnje.
-    \item Sistem proverava budžet i prikazuje upozorenje ako je prekoračen.
-    \item Menadžer potvrđuje ili menja količine.
+    \item Sistem proverava budžet i prikazuje upozorenje ako je prekoračen. Ako narudžbina premašuje budžet ide se u alternativni tok A3.
+    \item Menadžer potvrđuje ili menja količine. Ako artikal koji želi da naruči ne postoji u katalogu, ide se u alternativni tok A2.
+    \item Koraci 3-6 se ponavljaju za sledece artikle, dok menadzer ne zavrsi izbor artikala.
     \item Menadžer kreira narudžbenicu, šalje je dobavljaču i sistem je evidentira.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
 \begin{enumerate}
-    \item[A1.]\textbf{Menadžer želi da doda artikle koji nisu u obaveštenjima} Menadžer otvara katalog i ručno bira dodatne artikle za narudžbenicu.
-    \item[A2.]\textbf{Artikal koji želi da naruči ne postoji u katalogu} Menadžer može ručno dodati artikal u narudžbenicu i uneti sve potrebne podatke (novi artikal se formalno uvodi u katalog kada stigne).
+    \item[A1.]\textbf{Menadžer želi da doda artikle koji nisu u obaveštenjima} 
+        \begin{enumerate}
+            \item[1.] Menadžer otvara katalog artikala.
+            \item[2.] Menadžer bira dodatne artikle za narudžbenicu.
+            \item[3.] Sistem dodaje izabrane artikle u listu narudžbine.
+            \item[4.] Tok se vraća na glavni tok, korak 4.
+        \end{enumerate}
+    \item[A2.]\textbf{Artikal koji želi da naruči ne postoji u katalogu}
+        \begin{enumerate}
+            \item[1.] Menadžer bira opciju ručnog dodavanja artikla.
+            \item[2.] Menadžer unosi naziv, podatke o dobavljaču, cenu i druge parametre.
+            \item[3.] Sistem dodaje novi artikal u privremenu listu narudžbine.
+            \item[4.] Tok se vraća na glavni tok, korak 6 (menadžer sada menja ili potvrđuje količinu).
+        \end{enumerate}
+    \item[A3.]\textbf{Narudzbina premasuje budzet}
+        \begin{enumerate}
+            \item[1.] Sistem prikazuje upozorenje da bi narudžbina premašila dozvoljeni budžet.
+            \item[2.] Menadžer menja količine ili uklanja artikle iz narudžbine.
+            \item[3.] Sistem ažurira narudžbinu i ponovo proverava budžet: \\Ako je budžet sada u redu, tok se vraća na glavni tok, korak 6. \\Ako menadžer odustane, slucaj upotrebe se završava bez evidentiranja narudžbine.
+        \end{enumerate}  
 \end{enumerate}
 
 \subsubsection{Prijem robe}
@@ -59,12 +88,25 @@
     \item Menadzer otvara katalog na svom nalogu.
     \item Sistem prikazuje listu narudžbenica spremnih za prijem.
     \item Menadžer bira narudžbenicu koju prima.
-    \item Menadžer unosi stvarno primljene količine za svaki artikal.
-    \item Sistem proverava da li unete količine odgovaraju naručenim i upozorava u slučaju odstupanja.
+    \item Menadžer unosi stvarno primljene količine za artikal.
+    \item Sistem proverava da li unete količine odgovaraju naručenim i upozorava u slučaju odstupanja. Ako je primljena manja kolicina od naručene, ide se u alternativni tok A1. Ako je primljena veca kolicina od naručene, ide se u alternativni tok A2.
     \item Sistem ažurira stanje zaliha u katalogu i automatski evidentira datum prijema i primljene količine.
+    \item Koraci 4-6 se ponavljaju sa sledeci artikal. Ukoliko su svi dostavljeni artikli evindetirani, menadzer zavrsava prijem robe.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
 \begin{enumerate}
-    \item[A1.]\textbf{Stiglo je manje robe nego naruceno} Sistem prikazuje upozorenje. Menadžer može ponovo naručiti razliku.
-    \item[A2.] \textbf{Stiglo je vise robe nego naruceno} Sistem prikazuje upozorenje. Menadžer može ili dodati višak u katalog kao dostupnu zalihu ili kontaktirati dobavljača radi korekcije.
+    \item[A1.]\textbf{Stiglo je manje robe nego naruceno} 
+    \begin{enumerate}
+        \item Sistem prikazuje upozorenje o manjku robe.
+        \item Menadžer može naručiti razliku.
+        \item Sistem ažurira narudžbenicu.
+        \item Tok se vraća na glavni tok, korak 4 (za nastavak unosa sledećeg artikla).
+    \end{enumerate}
+    \item[A2.] \textbf{Stiglo je vise robe nego naruceno} 
+    \begin{enumerate}
+        \item Sistem prikazuje upozorenje o višku robe.
+        \item Menadžer bira opciju da ili dodati višak u katalog kao dostupnu zalihu ili da kontaktirati dobavljača radi korekcije
+        \item Sistem ažurira stanje zaliha po odluci menadžera.
+        \item Tok se vraća na glavni tok, korak 4 (za nastavak unosa sledećeg artikla).
+    \end{enumerate}
 \end{enumerate}
