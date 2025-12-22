@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{IS - 2025}
+\author{milican351 }
+\date{December 2025}
+
+\begin{document}
+
+\subsection{Evidencija pregleda i tretmana životinja}
+\indent Prilikom pregleda, ispitivanja i merenja rezultata vezanih za zdravstveno stanje životinje, sve informacije se unose u sistem. Ovaj proces omogućava vlasniku životinje da putem informacionog sistema pregleda i prati zdravstveno stanje svoje životinje, uključujući istoriju pregleda, tretmana i terapija. \\
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\linewidth]{su2.png}
+    \caption{Evidencija pregleda i tretmana životinja}
+    \label{fig:placeholder}
+\end{figure}
+
+\subsubsection{Unos podataka o pregledima, rezultatima i tretmanima}
+\indent \textbf{Kratak opis}: Veterinar beleži detalje pregleda, intervencije i/ili preporučene tretmane i lekove.\\
+\textbf{Akteri}: Veterinar, Vlasnik životinje\\
+\textbf{Preduslovi}: Veterinar je ulogovan u sistem i ima odgovarajuće privilegije za unos podataka o životinji i vlasniku. \\
+\textbf{Postuslov}: Karton životinje je ažuriran (alternativno - novi karton je kreiran) sa novim podacima i informacije su dostupne vlasniku i drugim veterinarima. \\
+\textbf{Glavni tok:}
+\begin{enumerate}
+    \item Veterinar bira životinju iz baze (po broju kartona i podacima o vlasniku).
+    \item Veterinar otvara karton životinje.
+    \item Unosi podatke o pregledu: simptome, nalaze, dijagnozu.
+    \item Dodaje tretmane: terapije, vakcinacije, laboratorijske analize.
+    \item Sistem beleži datum i vreme unosa.
+    \item Veterinar potvrdjuje unos i sistem ažurira karton. 
+\end{enumerate}
+\indent \textbf{Alternativni tok:}
+\begin{enumerate}
+    \item[A1.]\textbf{Vlasnik ne postoji u sistemu} 
+    
+    Ukoliko vlasnik nije registrovan u sistemu:
+    \begin{enumerate}
+        \item U koraku (1.) glavnog toka, sistem obaveštava vetrinara.
+        \item Veterinar dodaje novog vlasnika u sistem. 
+        \item Ponavlja se korak (1.) glavnog toka.
+    \end{enumerate}
+    \item[A2.]\textbf{Životinja nema karton u sistemu} 
+    
+    Ukoliko životinja ne postoji u sistemu:
+    \begin{enumerate}
+        \item U koraku (1.) glavnog toka, sistem obaveštava veterinara.
+        \item Veterinar dodaje životinju u sistem. 
+        \item Ponavlja se korak (1.) glavnog toka.
+    \end{enumerate}
+    \item[A3.]\textbf{Neki od rezultata nisu dostupni} Ukoliko neke anbalize o životinji nisu trenutno dostupne, sistem omogućava naknadni unos.
+\end{enumerate}
+\textbf{Dodatne informacije:}
+Potrebni podaci za dodavanje novog vlasnika u sistem su: ime, prezime, mejl adresa, broj telefona, broj ličnog dokumenta.
+
+
+
+\subsubsection{Pristupanje podacima o zdravstvenom stanju životnje}
+\textbf{Kratak opis}: Vlasniku životnje se omogućava da pristupi podacima o pregledima, tretmana i trenutnom zdravstveno stanju svoje životinje.\\
+ \textbf{Akteri}: Vlasnik životinje\\
+ \textbf{Preduslovi}: Vlasnik životinje je registrovan u sistemu i povezan sa kartonom svoje zivotinje. \\
+ \textbf{Postuslov}: Vlasnik ima ažuriran uvid u zdravstveno stanje životinje. \\
+ \textbf{Glavni tok:}
+\begin{enumerate}
+    \item Vlasnik se prijavljuje u sistem.
+    \item Vlasnik bira svoju životinju sa liste registrovanih ljubimaca.
+    \item Sistem prikazuje karton životinje.
+    \item Po potrebi, vlasnik bira opciju slanja podataka o životinji na mejl adresu.
+\end{enumerate}
+\indent \textbf{Alternativni tok:}
+\begin{enumerate}
+    \item[A1.]\textbf{Vlasniku nije stigao mejl sa podacima} 
+    
+    Ukoliko vlasniku nije stigao mejl sa zahtevanim podacima, slučaj upotrebe nije završen uspešno. Vlasnik ponavlja proces glavnog toka ili prijavljuje krešku klinici.
+\end{enumerate}
+
+\end{document}
