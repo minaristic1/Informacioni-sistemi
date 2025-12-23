@@ -2,6 +2,9 @@ Grupni projekat iz predmeta Informacioni sistemi na master studijama na Matemati
 Tema je Informacioni sistem veterinarske klinike. 
 
 Članovi tima: 
+
 Mina Ristić, 1119/2025
+
 Milica Nikolić, 1061/2024
+
 Alma Hodžić, 1120/2025
