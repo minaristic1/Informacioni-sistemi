@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage{color}
+\usepackage{url}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{cmsrb}
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage[OT2,T1]{fontenc} 
+\usepackage[serbian]{babel}
+\usepackage{float}
+\usepackage{hvfloat}
+
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+
+    \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+    \center
+    \textup{\Large Univerzitet u Beogradu\\Matematički fakultet}\\[1.5cm]
+    \textup{\Large Projekat iz predmeta Informacioni sistemi 2025/2026.}\\[0.4cm]
+
+    \HRule \\[0.4cm]
+    { \huge \bfseries Informacioni sistem veterinarske klinike}\\[0.4cm]
+    \HRule \\[1.1cm]
+    
+    \vspace{6 cm}
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Autori:}\\
+			Mina Ristić\\
+			Milica Nikolić\\
+			Alma Hodžić\\		
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.5\textwidth}
+		\begin{flushright} \large
+			\emph{Predmet:}\\ 
+			Informacioni sistemi\\
+			\emph{Profesor:}\\ 
+			Saša Malkov\\
+			\emph{Asistent:}\\ 
+			Dara Milojković
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	{\large \today}\\[2cm]
+\end{titlepage}
+
+\thispagestyle{empty}
+
+\newpage
+\renewcommand*\contentsname{Sadržaj:}
+\tableofcontents
+
+
+\newpage
+\section{Analiza sistema}
+
+\subsection{Uvod i osnovna ideja}
+	U nastavku je opisan projekat u okviru predmeta Informacioni sistemi na Matematičkom fakultetu Univerziteta u Beogradu. Cilj projekta jeste detaljan opis informacionog sistema koji bi podržao funkcionisanje vetrinarske klinike.
+
+\subsection{Korisnici sistema}
+	Korisnik informacionog sistema koji će biti opisan u nastavku može biti:
+\begin{enumerate}
+	\item \textbf{Veterinar}
+    Veterinar je korisnik sistema sa posebnim privilegijama koje omogućavaju vođenje evidencije o zdrvastvenom stanju životinje.
+	\item \textbf {Vlasnik životinje}
+    Vlasnik životinje je korisnik koji je registrovan u sistem, ali isti koristi samo u svrhu ćitanja podataka o životinji i zakazivanja pregleda. Vlasnik životinje asistira veterinaru prilikom kreiranja naloga i kartona životinje, takodje je i najbrojniji korisnik sistema. 
+	\item \textbf {Administrativni radnik}
+    
+	\item \textbf {Menadžer}
+\end{enumerate}
+\subsection{Kratak opis}
+	Kako je ranije navedeno, sistem treba da podrži rad veterinarske klinike. Funkcionalnost iste možemo podeliti u tri celine:
+	\begin{enumerate}
+    	\item {Upravljanje terminima i zakazivanje pregleda} \\
+        \item {Evidencija o zdravstvenom stanju životinje} \\
+        \item {Upravljanje zalihama lekova i opreme} \\
+    \end{enumerate}
+
+\newpage
+\section{Slučajevi upotrebe}
+
+\section{Model baze podataka}
+
+
+
+\end{document}
