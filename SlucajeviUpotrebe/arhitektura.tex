@@ -1,0 +1,54 @@
+\subsection{Odabir arhitekture}
+U ovom poglavlju predstavićemo arhitekturu našeg sistema. 
+Izabraćemo najpogodniju moguću arhitekturu sa balansom koji odgovara potrebama našeg sistema.
+Arhitektura je odabrana tako da ispuni što  je više moguće od sledećih zahteva:
+\begin{itemize}
+    \item Bezbednost sistema
+    \item Lakoća korišćenja
+    \item Dostupnost
+    \item Pouzdanost
+\end{itemize}
+
+Posmatrani informacioni sistem ima tri osnovna podsistema:
+
+\begin{enumerate}
+    \item \textbf{Zaposleni} - omogućava korišćenje sistema od strane veterinara i menadžera pri čemu se koriste usluge sledećih komponenti:
+        \begin{itemize}
+            \item Autentikacija - omogućava kreiranje novih naloga i registraciju zaposlenih sa već kreiranim nalozima
+            \item Obrada i pregled podataka - omogućava unos podataka o životinji i vlasniku životinje od strane veterinara, kreiranje kartona životinji od strane veterinara, pregled evidencije potrošnje lekova i kratkotrajne opreme od strane veterinara, pregled potrošnje od strane menadžera i kreiranje porudžbine od strane menadžera
+        \end{itemize}
+    \item \textbf{Vlasnik ljubimca} - omogućava korišćenje sistema od strane vlasnika ljubimca pri čemu se koriste usluge sledećih komponenti:
+        \begin{itemize}
+            \item Autentikacija - omogućava kreiranje novih naloga i registraciju vlasnika ljubimca sa već kreiranim nalozima
+            \item Pregled dostupnih termina - omogućvava pretraživanje slobodnih termina za pregled
+            \item Zakazivanje pregleda - omogućvava zakazivanje termina za pregled životinje
+            \item Pregled unetih podataka - omogućava pregled unetih podataka o ljubimcu i vlasniku
+        \end{itemize}
+    \item \textbf{Administrativni radnik} - omogućava korišćenje sistema od strane administrativnog radnika pri čemu se koriste usluge sledećih komponenti:
+        \begin{itemize}
+            \item Administracija - omogućava pre svega manipulaciju slobodnim i zauzetim terminima u bazi podataka
+        \end{itemize}
+\end{enumerate}
+
+Takođe, nabrojane komponente koriste bazu podataka posredstvom interfejsa za komunikaciju sa bazom podataka(JDBC).
+Informacioni sistem je podeljen na aplikacioni server i server baze podataka koji međusobno komuniciraju putem TCP/IP protokola. Na aplikacionom serveru je instaliran Tomcat 10 koji služi kao okruženje za izvršavanje glavne web aplikacije upakovane u fajl \textit{vetKlinika.war}. Sistem je dizajniran modularno, tako da su ključne funkcionalnosti implementirane kroz posebne komponente:
+\begin{itemize}
+            \item \textit{ terminiAdministracija.jar}: Ova komponenta implementira modul za upravljanje terminima. Zadužena je za logiku online zakazivanja, promenu termina i otkazivanje termina.
+            \item \textit{ medicinskiKarton.jar}: Implementira komponentu za vođenje evidencije o pacijentima. Obuhvata kreiranje kartona životinja, unos podataka o vlasnicima, kao i unos i pregled svih obavljenih pregleda i tretmana.
+            \item \textit{ logistikaZaliha.jar}: Implementira komponentu za upravljanje resursima klinike. Ova komponenta prati evidenciju potrošnje lekova tokom pregleda, upravlja prijemom robe i automatski generiše narudžbenice za jednokratnu opremu.
+\end{itemize}
+Za podešavanje parametara sistema, definisanje prava pristupa i konekciju sa bazom podataka koristi se konfiguracioni fajl \textit{system\_config.xml}.
+Drugi deo arhitekture čini server na kojem se nalazi MySQL sistem za upravljanje bazama podataka. Baza je struktuirana tako da čuva perzistentne podatke o svim entitetima sistema (vlasnici, ljubimci, istorija bolesti, stanje u magacinu). Komunikacija između logičkih komponenti iz .jar fajlova i same baze vrši se putem standardnih SQL upita kroz uspostavljenu mrežnu vezu.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{arhitektura.png}
+    \caption{Dijagram arhitekture}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{arhKom.png}
+    \caption{Dijagram komponenti}
+    \label{fig:placeholder}
+\end{figure}
