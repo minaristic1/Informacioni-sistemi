@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pregled zdravstvenog stanja ljubimca</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Portal vlasnika – Zdravstveni karton ljubimca</h1>
+  <div class="user">Ulogovan vlasnik: Petar Petrović</div>
+</header>
+
+<div class="container">
+
+  <!-- KORACI -->
+  <div class="steps">
+    <div class="step active" data-step-indicator="1"><span class="index">1</span> Prijava</div>
+    <div class="step" data-step-indicator="2"><span class="index">2</span> Izbor ljubimca</div>
+    <div class="step" data-step-indicator="3"><span class="index">3</span> Karton ljubimca</div>
+    <div class="step" data-step-indicator="4"><span class="index">4</span> Slanje podataka</div>
+  </div>
+
+  <!-- STRANICA 1: Prijava -->
+  <section class="card" id="page-1">
+    <h2>Prijava vlasnika</h2>
+    <p class="subtitle">Vlasnik se prijavljuje u sistem kako bi pristupio podacima o svom ljubimcu.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Korisničko ime</label>
+        <input type="text" placeholder="npr. petar.petrovic" />
+      </div>
+      <div class="form-group">
+        <label>Lozinka</label>
+        <input type="password" placeholder="Unesite lozinku" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <div></div>
+      <div class="actions-right">
+        <button class="btn-primary" data-go-to="2">Prijavi se</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRANICA 2: Izbor ljubimca -->
+  <section class="card hidden" id="page-2">
+    <h2>Izbor registrovanog ljubimca</h2>
+    <p class="subtitle">Vlasnik bira ljubimca čiji karton želi da pregleda.</p>
+
+    <div class="form-group">
+      <label>Moji ljubimci</label>
+      <select>
+        <option>Pas – Max</option>
+        <option>Mačka – Luna</option>
+        <option>Ptica – Kiki</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <div class="actions-left">
+        <button class="btn-ghost" data-go-to="1">Nazad</button>
+      </div>
+      <div class="actions-right">
+        <button class="btn-primary" data-go-to="3">Otvori karton</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRANICA 3: Karton ljubimca -->
+  <section class="card hidden" id="page-3">
+    <h2>Karton ljubimca – Max</h2>
+    <p class="subtitle">Prikaz pregleda, tretmana i trenutnog zdravstvenog stanja.</p>
+
+    <div class="card inner">
+      <h3>Opšti podaci</h3>
+      <p><strong>Vrsta:</strong> Pas</p>
+      <p><strong>Rasa:</strong> Labrador</p>
+      <p><strong>Starost:</strong> 4 godine</p>
+    </div>
+
+    <div class="card inner">
+      <h3>Poslednji pregled</h3>
+      <p><strong>Datum:</strong> 12.02.2025.</p>
+      <p><strong>Simptomi:</strong> Kašalj, umor</p>
+      <p><strong>Nalazi:</strong> Blaga upala disajnih puteva</p>
+      <p><strong>Dijagnoza:</strong> Respiratorna infekcija</p>
+    </div>
+
+    <div class="card inner">
+      <h3>Tretmani</h3>
+      <p><strong>Terapija:</strong> Antibiotik – 7 dana</p>
+      <p><strong>Vakcinacije:</strong> Redovna godišnja vakcina primljena</p>
+      <p><strong>Analize:</strong> Krvna slika – uredna</p>
+    </div>
+
+    <div class="info-box">
+      Ovi podaci su informativnog karaktera i ažuriraju se nakon svakog pregleda.
+    </div>
+
+    <div class="actions">
+      <div class="actions-left">
+        <button class="btn-ghost" data-go-to="2">Nazad</button>
+      </div>
+      <div class="actions-right">
+        <button class="btn-secondary" data-go-to="4">Pošalji podatke na mejl</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRANICA 4: Slanje podataka -->
+  <section class="card hidden" id="page-4">
+    <h2>Slanje podataka na mejl</h2>
+    <p class="subtitle">Vlasnik može zatražiti da mu se karton pošalje na mejl adresu.</p>
+
+    <div class="form-group">
+      <label>Mejl adresa</label>
+      <input type="email" placeholder="npr. petar@primer.com" />
+    </div>
+
+    <div class="info-box">
+      Ako mejl ne stigne, vlasnik može ponoviti proces ili kontaktirati kliniku.
+    </div>
+
+    <div class="actions">
+      <div class="actions-left">
+        <button class="btn-ghost" data-go-to="3">Nazad</button>
+      </div>
+      <div class="actions-right">
+        <button class="btn-primary">Pošalji podatke</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
