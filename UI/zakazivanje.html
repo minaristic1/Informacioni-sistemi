@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>PetCare – Online Zakazivanje</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Veterinarska Klinika PetCare</h1>
+  <div class="user">Online zakazivanje pregleda</div>
+</header>
+
+<div class="container">
+  <section class="card">
+    <h2>Podaci o vlasniku i ljubimcu</h2>
+    <p class="subtitle">Popunite sva polja kako biste rezervisali termin.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Ime i prezime vlasnika *</label>
+        <input type="text" id="vlasnik" placeholder="Jovan Jovanović">
+      </div>
+      <div class="form-group">
+        <label>Email adresa *</label>
+        <input type="email" id="email" placeholder="primer@email.com">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Broj telefona *</label>
+        <input type="tel" id="telefon" placeholder="+381 60 1234567">
+      </div>
+      <div class="form-group">
+        <label>Vrsta ljubimca *</label>
+        <select id="ljubimac">
+          <option value="">Izaberite...</option>
+          <option value="pas">Pas</option>
+          <option value="macka">Mačka</option>
+          <option value="ptica">Ptica</option>
+          <option value="glodar">Glodar</option>
+          <option value="gmizavac">Gmizavac</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tip pregleda *</label>
+        <select id="pregled">
+          <option value="">Izaberite...</option>
+          <option value="pregled">Pregled</option>
+          <option value="vakcinacija">Vakcinacija</option>
+          <option value="hirurgija">Hirurški zahvat</option>
+          <option value="redovni">Redovni pregled</option>
+          <option value="drugo">Drugo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Slobodan termin *</label>
+        <select id="termin">
+          <option value="">Izaberite termin...</option>
+          <option value="pon-09">Ponedeljak, 20.01. u 09:00</option>
+          <option value="pon-11">Ponedeljak, 20.01. u 11:00</option>
+          <option value="uto-10">Utorak, 21.01. u 10:00</option>
+          <option value="sre-14">Sreda, 22.01. u 14:00</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="info-box" id="glavna-poruka">
+      <strong>NAPOMENA:</strong>Sva polja su obavezna. Potvrda će Vam biti poslata elektronskom poštom.
+    </div>
+
+    <div class="actions">
+      <div></div>
+      <button class="btn-primary" id="btnPotvrdi">Potvrdi zakazivanje</button>
+    </div>
+  </section>
+</div>
+
+<script src="online-script.js"></script>
+</body>
+</html>

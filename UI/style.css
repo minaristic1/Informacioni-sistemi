@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+  color: #222;
+}
+
+/* HEADER – tamnija mint zelena */
+header {
+  background: #00796b; /* tamna mint */
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* KONTEJNER */
+.container {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px 40px;
+}
+
+/* KORACI */
+.steps {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.step {
+  padding: 8px 12px;
+  border-radius: 16px;
+  border: 1px solid #b2dfdb; /* svetla mint */
+  background: #fff;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Aktivni korak – primarna mint zelena */
+.step.active {
+  background: #4dd0ae; /* mint */
+  color: #fff;
+  border-color: #4dd0ae;
+  opacity: 1;
+}
+
+/* KARTICE */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+}
+
+.card.inner {
+  background: #fdfdff;
+  border: 1px solid #e0f2f1; /* bas svetla mint */
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* FORME */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+input, select, textarea {
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #b2dfdb; /* svetla mint */
+  background: #fafbff;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+/* INFO BOX – svetla mint pozadina */
+.info-box {
+  background: #e0f2f1; /* svetla mint */
+  border-left: 3px solid #26a69a; /* akcent mint */
+  padding: 8px 10px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+/* DUGMAD */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Primarno dugme – mint zelena */
+.btn-primary {
+  background: #4dd0ae;
+  color: #fff;
+}
+
+/* Sekundarno dugme – svetla mint */
+.btn-secondary {
+  background: #b2dfdb;
+  color: #004d40;
+}
+
+/* Ghost dugme – samo tekst */
+.btn-ghost {
+  background: transparent;
+  color: #00796b;
+}
+
+/* Skrivene stranice */
+.hidden {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+}
+.error-border {
+  border: 2px solid #ff5252 !important;
+  background-color: #fff8f8 !important;
+}

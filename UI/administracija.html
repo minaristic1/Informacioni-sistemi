@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>PetCare – Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; }
+    .admin-table th, .admin-table td { padding: 12px; border: 1px solid #b2dfdb; text-align: left; font-size: 13px; }
+    .admin-table th { background: #4dd0ae; color: white; }
+    .btn-delete { background: #ff5252; color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+    .btn-edit { background: #ffa726; color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 5px; }
+    .error-border { border: 2px solid #ff5252 !important; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>PetCare – Zakazivanje Termina</h1>
+  <div class="user">Admin: Radnik na šalteru</div>
+</header>
+
+<div class="container">
+  <section class="card">
+    <h2 id="form-title">Unos novog zakazivanja</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Ime i Prezime </label>
+        <input type="text" id="vlasnik">
+      </div>
+      <div class="form-group">
+        <label>Broj telefona </label>
+        <input type="text" id="telefon">
+      </div>
+      <div class="form-group">
+        <label>Email </label>
+        <input type="email" id="email">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Vrsta ljubimca </label>
+        <select id="ljubimac">
+           <option value="">Izaberite...</option>
+          <option value="pas">Pas</option>
+          <option value="macka">Mačka</option>
+          <option value="ptica">Ptica</option>
+          <option value="glodar">Glodar</option>
+          <option value="gmizavac">Gmizavac</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tip pregleda </label>
+        <select id="pregled">
+          <option value="">Izaberite...</option>
+          <option value="pregled">Pregled</option>
+          <option value="vakcinacija">Vakcinacija</option>
+          <option value="hirurgija">Hirurški zahvat</option>
+          <option value="redovni">Redovni pregled</option>
+          <option value="drugo">Drugo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Termin </label>
+        <input type="datetime-local" id="termin">
+      </div>
+    </div>
+
+    <div class="info-box" id="msg">Svi podaci uneti u tabelu se mogu naknadno menjati ili brisati.</div>
+
+    <div class="actions">
+      <button class="btn-primary" id="btnSacuvaj">Sačuvaj</button>
+      <button class="btn-ghost hidden" id="btnOtkaziIzmenu">Odustani od izmene</button>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top: 30px;">
+    <h2>Lista zakazanih termina</h2>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Termin</th>
+          <th>Vlasnik</th>
+          <th>Telefon</th>
+          <th>Ljubimac</th>
+          <th>Pregled</th>
+          <th>Akcije</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-body">
+        </tbody>
+    </table>
+  </section>
+</div>
+
+<script src="admin-logic.js"></script>
+</body>
+</html>
