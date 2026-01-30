@@ -1,195 +1,109 @@
 \section{Model baze podataka sistema}
+\indent
+\indent
+\begin{figure}[H]
+\makebox[\textwidth][c]{%
+    \includegraphics[width=1.3\textwidth]{Dijagrami/dijagram_klasa.png}
+}
+\caption{Dijagram klasa podataka}
+\label{fig:dijagram-klasa}
+\end{figure}
+\newpage
 \subsection{Opis modela}
 \indent U ovom modelu baze podataka ključni entiteti su vlasnik, životinja, termin pregleda, karton životinje, pregled, tretman, kao i entiteti vezani za upravljanje zalihama lekova i medicinske opreme. Entitet vlasnik je povezan sa jednom ili više životinja, dok svaka životinja ima svoj karton u okviru kog se čuvaju podaci o pregledima, dijagnozama i tretmanima. Entitet termin omogućava evidenciju zakazivanja, izmene i otkazivanja pregleda. Pored medicinskog dela sistema, model obuhvata i entitete artikal, potrošnja i narudžbenica, koji omogućavaju praćenje stanja zaliha, evidenciju potrošnje i blagovremenu nabavku lekova i opreme. Na ovaj način model baze podataka podržava osnovne poslovne procese veterinarske klinike.
-\subsection{Entiteti}
+\subsection{Entiteti i veze}
 
-\indent\textbf{Vlasnik} - vlasnik zivotinje
-\begin{itemize}{Atributi:}
-    \item vlasnik
-    \item ime
-    \item prezime
-    \item email
-    \item broj\_telefona
-    \item adresa
-\end{itemize}
-\begin{itemize}{Veze:}
-    \item Jedan vlasnik moze imati vise zivotinja. (1:N)
-    \item Jedan vlasnik moze da zakaze vise termina. (1:N)
+\indent\textbf {Korisnik}
+\begin{itemize}
+    \item Opis: Klasa korisnik predstavlja najapstraktniji opis korisnika i povezana je sa tabelom u bazi.
+    \item Atributi: ime, prezime, email, broj\_telefona, adresa, lozinka
 \end{itemize}
 
-\indent \textbf{Zaposleni} - obuhvata sve zaposlene. 
-\begin{itemize}{Atributi:}
-    \item zaposleni\_id (PK)
-    \item ime
-    \item prezime
-    \item email
-    \item broj\_telefona
-    \item tip\_zaposlenog (veterinar, administrativni\_radnik, menadžer)
+\indent\textbf {Vlasnik}
+\begin{itemize}
+    \item Opis: Izvedena klasa klase Korisnik
+    \item Jedan vlasnik može imati 0 ili vise Životinja (0:N)
 \end{itemize}
 
-\begin{itemize}{Tip zaposlenog:}
-    \item Veterinar - vezan je za entitete pregled i potrošnju. 
-    \item Administativni radnik - vezan je za entitet termin.
-    \item  Menadžer - vezan je za entitet narudžbenicu.  
+\indent \textbf{Zaposleni}
+\begin{itemize}
+    \item Opis: Izvedena klasa klase Korisnik, predstavlja apstrakciju svih korisnika koji su zaposleni na klinici
+    \item Atributi: broj računa
 \end{itemize}
 
-\indent\textbf{Životinja} - sadrži osnovne podatke o ljubimcu koji se leči u veterinarskoj klinici. 
-\begin{itemize}{Atributi:}
-    \item zivotinja\_id (PK)
-    \item ime
-    \item vrsta
-    \item rasa
-    \item datum\_rodjenja
-    \item vlasnik\_id (FK - Vlasnik)
+\indent \textbf{Veterinar}
+\begin{itemize}
+    \item Opis: Izvedena klasa klase Zaposleni
+    \item Atributi: zvanje
+    \item Jedan veterinar može imati 0 ili vise Pregled (0:N)
+    \item Jedan veterinar može imati 0 ili vise Predloga (0:N)
 \end{itemize}
 
-\begin{itemize}{Veze:}
-    \item Svaka životinja pripada tačno jednom vlasniku.
-    \item Svaka životinja ima jedan karton.
-    \item Životinja može imati više termina pregleda.
+\indent \textbf{Administrativni radnik}
+\begin{itemize}
+    \item Opis: Izvedena klasa klase Zaposlenis
+    \item Jedan Administrativni radnik može imati 0 ili više Termina (0:N)
 \end{itemize}
 
-\indent\textbf{Karton} - medicinski karton životinje u kojem se čuvaju svi podaci o njenom zdravstvenom stanju.
-\begin{itemize}{Atributi:}
-    \item karton\_id (PK)
-    \item datum\_kreiranja
-    \item životinja\_id UNIQUE (FK - Životinja)
+\indent \textbf{Menadzer}
+\begin{itemize}
+    \item Opis: Izvedena klasa klase Zaposleni 
+    \item Jedan Administrativni radnik može imati 0 ili više Narudzbina (0:N)
 \end{itemize}
 
-\begin{itemize}{Veze:}
-    \item Karton je vezan za tačno jednu životinju. (1:1)
-    \item Jedan karton može sadržati više pregleda (1:N veza sa entitetom Pregled).
+\indent\textbf{Životinja}
+\begin{itemize}
+    \item Opis: Klasa kojoj odgovara tabela koja sadrži osnovne podatke o ljubimcu koji se leči u veterinarskoj klinici.
+    \item Atributi: id životinje (broj kartona), ime, vrsta, datum rođenja, vlasnik (FK u tabeli)
+    \item Životinj jednog Vlasnika (1)
+    \item Životinja može imati 0 ili više Pregleda (0:N)
 \end{itemize}
 
-\indent\textbf{Pregled} - pojedinačni pregled životinje koji obavlja veterinar.
-\begin{itemize}{Atributi:}
-    \item pregled\_id (PK)
-    \item datum\_vreme
-    \item simptomi
-    \item dijagnoza
-    \item tip\_pregleda\_id (FK - TipPregleda)
-    \item termin\_id (FK - Termin)
-    \item karton\_id (FK - Karton)
-    \item veterinar\_id (FK - Zaposleni)
+\indent\textbf{Pregled}
+\begin{itemize}
+    \item Opis: Klasa kojoj odgovara tabela koja sadrži podatke o pojedinačnim pregledima životinje koje obavlja veterinar.
+    \item Atributi: id pregleda, životinja (FK u tabeli), vetarinar (FK u tabeli), datum, tegobe, terapija, rezultati, preporuke
+    \item Pregled obavlja jedan veterinar (1)
+    \item Pregled obavlja jedan nad jednom Životinjom (1)
 \end{itemize}
 
-\begin{itemize}{Veze:}
-    \item Jedan karton može imati više pregleda.
-    \item Jedan veterinar može obaviti više pregleda.
-    \item Jedan pregled može imati više tretmana (1:N veza sa entitetom Tretman).
+\indent\textbf{Predlog}
+\begin{itemize}
+    \item Opis: Klasa kojoj odgovara tabela koja sadrži podatke o predlozima veterinara o nabavci opreme.
+    \item Atributi: id veterinar (FK u tabeli), artikal (FK u tabeli), datum, količina, status
+    \item Jedan predlog kreira jedan veterinar (1)
 \end{itemize}
 
-\indent\textbf{Tretman} - obuhvata terapije, vakcinacije i laboratorijske analize koje su povezane sa pregledom.
-\begin{itemize}{Atributi:}
-    \item tretman\_id (PK)
-    \item tip\_tretmana (terapija, vakcinacija, analiza)
-    \item opis
-    \item pregled\_id (FK - Pregled)
+\indent\textbf{Termin}
+\begin{itemize}
+    \item Opis: Klasa kojoj odgovara tabela koja sadrži termine za naredna 3 meseca.
+    \item Atributi: id termina, ime, vrsta životinje, vrsta pregleda, status, administrativni radnik (FK u tabeli), datume, vreme, telefon, email
+    \item Jedan administrativni radnik menja 0 ili više termina (0:N)
 \end{itemize}
 
-\begin{itemize}{Veze:}
-    \item Jedan pregled može imati više tretmana.
+\indent\textbf{Artikal}
+\begin{itemize}
+    \item Opis: Klasa kojoj odgovara tabela koja sadrži podatke o lekovima ili medicinskoj opremi dostupnoj u klinici.
+    \item Atributi: id, naziv, količina, preporučena količina, tip, opis
+    \item Jedan artikal je sadržan u 0 ili više Predloga (0:N)
+    \item Jedan artikal je sadržan u u 0 ili više Stavki Narudžbine (0:N)
 \end{itemize}
 
-\indent\textbf{Termin} - evidencija zakazivanja, izmene i otkazivanja pregleda.
-\begin{itemize}{Atributi:}
-    \item termin\_id (PK)
-    \item datum
-    \item vreme
-    \item status (slobodan, zakazan, otkazan)
-    \item zivotinja\_id (FK - Životinja)
-    \item vlasnik\_id (FK - Vlasnik)
-    \item tip\_pregleda\_id (FK - TipPregleda)
+\indent\textbf{Stavka narudžbine}
+\begin{itemize}
+    \item Opis: Klasa kojoj odgovara tabela koja sadrži podatke o količini i ceni pojedinačnih artikala koje treba nabaviti
+    \item Atributi: id, artikal (FK u tabeli), narudžbina (FK u tabeli)
+    \item Stavka odgovara tačno jednoj narudžbini (1)
+    \item Stavka odgovara tačno jednom Artiklu (1)
 \end{itemize}
 
-\begin{itemize}{Veze:}
-    \item Jedan vlasnik može imati više termina.
-    \item Jedna životinja može imati više termina.
-    \item Jedan tip pregleda se koristi u više termina.
+\indent\textbf{Narudžbina} - podaci o naručivanju lekova i opreme.
+\begin{itemize}
+    \item Opis: Klasa kojoj odgovara tabela koja sadrži podatke jednoj narudžbini
+    \item Atributi: id, menadžer (FK u tabeli), status
+    \item Narudžbina može imati 0 ili više stavki (0:N)
+    \item Svakom naruđbinom upravlja jedan menadžer (1)
 \end{itemize}
-
-\indent\textbf{Tip pregleda} - vrste pregleda koje klinika pruža.
-\begin{itemize}{Atributi:}
-    \item tip\_pregleda\_id (PK)
-    \item naziv
-    \item trajanje
-\end{itemize}
-
-\begin{itemize}{Veze:}
-    \item Jedan tip pregleda može biti dodeljen vise termina. 
-\end{itemize}
-
-\indent\textbf{Artikal} - lek ili medicinska oprema dostupna u klinici.
-\begin{itemize}{Atributi:}
-    \item artikal\_id (PK)
-    \item naziv
-    \item tip (lek / oprema)
-    \item minimalna\_kolicina
-    \item trenutna\_kolicina
-    \item cena
-\end{itemize}
-
-\begin{itemize}{Veze:}
-    \item Jedan artikal može imati više zapisa o potrošnji.
-    \item Jedan artikal može se pojaviti u više stavki narudžbenice.
-\end{itemize}
-
-\indent\textbf{Potrošnja} - korišćenje lekova i opreme od strane veterinara.
-\begin{itemize}{Atributi:}
-    \item potrošnja\_id (PK)
-    \item datum
-    \item količina
-    \item pregled\_id (FK - Pregled)
-    \item artikal\_id (FK - Artikal)
-    \item veterinar\_id (FK - Zaposleni)
-\end{itemize}
-
-\begin{itemize}{Veze:}
-    \item Jedan veterinar može evidentirati više potrošnji.
-    \item Jedan artikal može biti potrošen više puta.
-\end{itemize}
-
-\indent\textbf{Narudžbenica} - podaci o naručivanju lekova i opreme.
-\begin{itemize}{Atributi:}
-    \item narudžbenica\_id (PK) 
-    \item datum
-    \item status
-    \item ukupna\_cena
-    \item menadžer\_id (FK - Zaposleni)
-    \item dobavljač\_id (FK - Dobavljač)
-\end{itemize}
-
-\begin{itemize}{Veze:}
-    \item Jedna narudžbenica sadrži više stavki.
-\end{itemize}
-
-\indent\textbf{Stavka narudžbenice} - povezuje narudžbenicu i artikle.
-\begin{itemize}{Atributi:}
-    \item stavka\_id (PK)
-    \item količina
-    \item cena
-    \item primljena\_kolicina
-    \item narudžbenica\_id (FK - Narudžbenica)
-    \item artikal\_id (FK - Artikal)
-\end{itemize}
-
-\begin{itemize}{Veze:}
-    \item Jedna stavka narudžbenice pripada samo jednoj narudžbenici. 
-\end{itemize}
-
-\indent \textbf{Dobavljač} - dobavlja lekove i medicinsku opremu.
-\begin{itemize}{Atributi:}
-    \item dobavljač\_id (PK)
-    \item naziv
-    \item kontakt\_email
-    \item broj\_telefona 
-    \item adresa
-\end{itemize}
-
-\begin{itemize}{Veze:}
-    \item Jedan dobavljač može biti povezan sa više narudžbenica (1:N veza sa Narudžbenica).
-\end{itemize}
-
 
 
 
