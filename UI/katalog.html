@@ -7,7 +7,6 @@
   <style>
     .item-list { margin-top: 20px; }
     
-    /* MODAL STIL */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -307,7 +306,7 @@
 </div>
 
 <script>
-  // Podaci za podkategorije
+ 
   const podaci = {
     lekovi: [
       { val: 'antibiotici', naz: 'Antibiotici' },
@@ -326,7 +325,7 @@
   const mainSelect = document.getElementById('main-group');
   const subSelect = document.getElementById('subcategory-select');
 
-  // Promena glavne grupe - POPRAVLJENO: Sada odmah nudi podkategorije
+  
   mainSelect.addEventListener('change', function() {
     const grupa = this.value;
     subSelect.innerHTML = '<option value="">-- Izaberi podkategoriju --</option>';
@@ -342,7 +341,7 @@
     sakrijSve();
   });
 
-  // Prikaz liste kad se izabere podkategorija
+  
   subSelect.addEventListener('change', function() {
     sakrijSve();
     const lista = document.getElementById('list-' + this.value);
@@ -357,7 +356,7 @@
   const modalSugg = document.getElementById('modalSuggestion');
   let ciljniSpan = null;
 
-  // Otvaranje modala za potrošnju
+  
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('btn-evidentiraj')) {
       const row = e.target.closest('.card.inner');
@@ -368,7 +367,7 @@
     }
   });
 
-  // Otvaranje modala za PREDLOG
+  
   document.getElementById('btn-open-suggestion').onclick = () => modalSugg.classList.add('active');
 
   // Zatvaranje svih modala (dugme Otkaži)
@@ -379,7 +378,7 @@
     };
   });
 
-  // Potvrda potrošnje
+  
   document.getElementById('btn-confirm-consumption').onclick = () => {
     const uneseno = parseInt(document.getElementById('input-quantity').value);
     const staro = parseInt(ciljniSpan.textContent);
@@ -391,7 +390,7 @@
     }
   };
 
-  // Potvrda PREDLOGA
+  
   document.getElementById('btn-confirm-suggestion').onclick = () => {
     const ime = document.getElementById('suggest-name').value;
     const razlog = document.getElementById('suggest-reason').value;
@@ -403,13 +402,13 @@
 
     alert("Predlog za '" + ime + "' je uspešno poslat menadžmentu!");
     
-    // Resetuj polja i zatvori
+    
     document.getElementById('suggest-name').value = "";
     document.getElementById('suggest-reason').value = "";
     modalSugg.classList.remove('active');
   };
 
-  // Zatvaranje klikom van okvira
+  
   window.onclick = (e) => {
     if (e.target == modalCons) modalCons.classList.remove('active');
     if (e.target == modalSugg) modalSugg.classList.remove('active');
