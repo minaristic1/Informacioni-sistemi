@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Veterinarska ordinacija – Katalog</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .item-list { margin-top: 20px; }
+    
+    /* MODAL STIL */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none; 
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box { width: 95%; max-width: 400px; padding: 24px; animation: slideDown 0.3s ease-out; }
+    @keyframes slideDown { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .low-stock { color: #d32f2f; font-weight: bold; }
+    
+    textarea { width: 100%; min-height: 80px; margin-top: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Veterinarska ordinacija – Upravljanje zalihama</h1>
+  <div class="user">Ulogovan: dr vet. med. Marko Marković</div>
+</header>
+
+<div class="container">
+
+  <section class="card">
+    <h2>Katalog artikala</h2>
+    <p class="subtitle">Izaberite grupu i podkategoriju za prikaz artikala.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Glavna grupa</label>
+        <select id="main-group">
+          <option value="">-- Izaberi --</option>
+          <option value="lekovi">Lekovi</option>
+          <option value="oprema">Oprema</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Podkategorija</label>
+        <select id="subcategory-select">
+          <option value="">Prvo izaberi grupu...</option>
+        </select>
+      </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e0f2f1; margin: 20px 0;">
+
+    <div id="list-antibiotici" class="item-list hidden">
+      <h3>Lista artikala – Antibiotici</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Synulox</strong><br><small>Stanje: <span class="item-stock">20</span> | Min: 10</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Convenia</strong><br><small>Stanje: <span class="item-stock">15</span> | Min: 10</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Gentamicin</strong><br><small>Stanje: <span class="item-stock">10</span> | Min: 5</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Metrozol</strong><br><small>Stanje: <span class="item-stock">20</span> | Min: 10</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="list-analgetici" class="item-list hidden">
+      <h3>Lista artikala – Analgetici</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Tramadol</strong><br><small>Stanje: <span class="item-stock">40</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Buprenorfin</strong><br><small>Stanje: <span class="item-stock">10</span> | Min: 20</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Carprofen</strong><br><small>Stanje: <span class="item-stock">42</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="list-antiparazitici" class="item-list hidden">
+      <h3>Lista artikala – Antiparazitici</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Ivermektin</strong><br><small>Stanje: <span class="item-stock">45</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Fipronil</strong><br><small>Stanje: <span class="item-stock">22</span> | Min: 20</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Prazikvantel</strong><br><small>Stanje: <span class="item-stock">12</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="list-hormoni" class="item-list hidden">
+      <h3>Lista artikala – Hormoni</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Oksitocin</strong><br><small>Stanje: <span class="item-stock">25</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Progesteron</strong><br><small>Stanje: <span class="item-stock">32</span> | Min: 20</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Insulin</strong><br><small>Stanje: <span class="item-stock">32</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="list-vakcine" class="item-list hidden">
+      <h3>Lista artikala – Vakcine</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Vakcina protiv besnila</strong><br><small>Stanje: <span class="item-stock">25</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">DHPP / DHPPI vakcina</strong><br><small>Stanje: <span class="item-stock">32</span> | Min: 20</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Vakcina protiv parvovirusa</strong><br><small>Stanje: <span class="item-stock">32</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Vakcina protiv panleukopenije</strong><br><small>Stanje: <span class="item-stock">22</span> | Min: 10</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="list-potrosnimaterijal" class="item-list hidden">
+      <h3>Lista artikala – Potrošni materijal</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Špric 1ml</strong><br><small>Stanje: <span class="item-stock">25</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Špric 2ml</strong><br><small>Stanje: <span class="item-stock">32</span> | Min: 20</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Špric 5ml</strong><br><small>Stanje: <span class="item-stock">32</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Igla</strong><br><small>Stanje: <span class="item-stock">22</span> | Min: 10</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="list-hirurskaoprema" class="item-list hidden">
+      <h3>Lista artikala – Hirurška oprema</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Hirurške makaze</strong><br><small>Stanje: <span class="item-stock">15</span> | Min: 5</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Pincete</strong><br><small>Stanje: <span class="item-stock">10</span> | Min: 5</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Držači igle</strong><br><small>Stanje: <span class="item-stock">20</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="list-labmaterijal" class="item-list hidden">
+      <h3>Lista artikala – Laboratorijski materijal</h3><br>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Epruvete</strong><br><small>Stanje: <span class="item-stock">15</span> | Min: 5</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Mikroskopske pločice</strong><br><small>Stanje: <span class="item-stock">10</span> | Min: 5</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+      <div class="card inner">
+        <div class="form-row" style="align-items: center;">
+          <div style="flex: 2;"><strong class="item-name">Test trake</strong><br><small>Stanje: <span class="item-stock">20</span> | Min: 15</small></div>
+          <div style="flex: 1; text-align: right;"><button class="btn-secondary btn-evidentiraj">Evidentiraj</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div></div>
+      <div class="actions-right">
+        <button class="btn-primary" id="btn-open-suggestion" style="background: #673ab7;">⭐ Predlog za nabavku </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal-overlay" id="modalConsumption">
+  <div class="card modal-box">
+    <h2 id="modal-title">Naziv artikla</h2>
+    <p class="subtitle" id="modal-stock-info">Trenutno stanje: 0</p>
+    <div class="form-group" style="margin-top: 20px;">
+      <label>Unesite potrošenu količinu:</label>
+      <input type="number" id="input-quantity" value="1" min="1" style="width: 100%;">
+    </div>
+    <div class="actions">
+      <div class="actions-left"><button class="btn-ghost btn-close" id="btn-close-modal">Otkaži</button></div>
+      <div class="actions-right"><button class="btn-primary" id="btn-confirm-consumption">Potvrdi</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalSuggestion">
+  <div class="card modal-box">
+    <h2>Predlog za novu nabavku</h2>
+    <p class="subtitle">Predložite artikal koji trenutno nemamo u katalogu.</p>
+    
+    <div class="form-group" style="margin-top: 15px;">
+      <label>Ime artikla:</label>
+      <input type="text" id="suggest-name" placeholder="Unesite naziv leka ili opreme">
+    </div>
+
+    <div class="form-group" style="margin-top: 15px;">
+      <label>Kategorija:</label>
+      <select id="suggest-category">
+        <option value="lekovi">Lek</option>
+        <option value="oprema">Oprema</option>
+      </select>
+    </div>
+
+    <div class="form-group" style="margin-top: 15px;">
+      <label>Razlog (zašto nam je ovo potrebno):</label>
+      <textarea id="suggest-reason" placeholder="Npr. Efikasniji za određene terapije..."></textarea>
+    </div>
+
+    <div class="actions">
+      <div class="actions-left"><button class="btn-ghost btn-close">Otkaži</button></div>
+      <div class="actions-right"><button class="btn-primary" id="btn-confirm-suggestion">Pošalji predlog</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Podaci za podkategorije
+  const podaci = {
+    lekovi: [
+      { val: 'antibiotici', naz: 'Antibiotici' },
+      { val: 'analgetici', naz: 'Analgetici' },
+      { val: 'antiparazitici', naz: 'Antiparazitici' },
+      { val: 'hormoni', naz: 'Hormoni' },
+      { val: 'vakcine', naz: 'Vakcine' }
+    ],
+    oprema: [
+      { val: 'potrosnimaterijal', naz: 'Potrošni materijal' },
+      { val: 'hirurskaoprema', naz: 'Hirurška oprema' },
+      { val: 'labmaterijal', naz: 'Laboratorijski materijal' }
+    ]
+  };
+
+  const mainSelect = document.getElementById('main-group');
+  const subSelect = document.getElementById('subcategory-select');
+
+  // Promena glavne grupe - POPRAVLJENO: Sada odmah nudi podkategorije
+  mainSelect.addEventListener('change', function() {
+    const grupa = this.value;
+    subSelect.innerHTML = '<option value="">-- Izaberi podkategoriju --</option>';
+    
+    if (grupa && podaci[grupa]) {
+      podaci[grupa].forEach(item => {
+        let opt = document.createElement('option');
+        opt.value = item.val;
+        opt.textContent = item.naz;
+        subSelect.appendChild(opt);
+      });
+    }
+    sakrijSve();
+  });
+
+  // Prikaz liste kad se izabere podkategorija
+  subSelect.addEventListener('change', function() {
+    sakrijSve();
+    const lista = document.getElementById('list-' + this.value);
+    if (lista) lista.classList.remove('hidden');
+  });
+
+  function sakrijSve() {
+    document.querySelectorAll('.item-list').forEach(l => l.classList.add('hidden'));
+  }
+
+  const modalCons = document.getElementById('modalConsumption');
+  const modalSugg = document.getElementById('modalSuggestion');
+  let ciljniSpan = null;
+
+  // Otvaranje modala za potrošnju
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn-evidentiraj')) {
+      const row = e.target.closest('.card.inner');
+      ciljniSpan = row.querySelector('.item-stock');
+      document.getElementById('modal-title').textContent = row.querySelector('.item-name').textContent;
+      document.getElementById('modal-stock-info').textContent = "Trenutno stanje: " + ciljniSpan.textContent;
+      modalCons.classList.add('active');
+    }
+  });
+
+  // Otvaranje modala za PREDLOG
+  document.getElementById('btn-open-suggestion').onclick = () => modalSugg.classList.add('active');
+
+  // Zatvaranje svih modala (dugme Otkaži)
+  document.querySelectorAll('.btn-close').forEach(btn => {
+    btn.onclick = () => {
+      modalCons.classList.remove('active');
+      modalSugg.classList.remove('active');
+    };
+  });
+
+  // Potvrda potrošnje
+  document.getElementById('btn-confirm-consumption').onclick = () => {
+    const uneseno = parseInt(document.getElementById('input-quantity').value);
+    const staro = parseInt(ciljniSpan.textContent);
+    if (uneseno > staro) { alert("Nema dovoljno na stanju!"); } 
+    else {
+      ciljniSpan.textContent = staro - uneseno;
+      modalCons.classList.remove('active');
+      alert("Proknjiženo!");
+    }
+  };
+
+  // Potvrda PREDLOGA
+  document.getElementById('btn-confirm-suggestion').onclick = () => {
+    const ime = document.getElementById('suggest-name').value;
+    const razlog = document.getElementById('suggest-reason').value;
+
+    if (!ime || !razlog) {
+      alert("Molimo popunite sva polja!");
+      return;
+    }
+
+    alert("Predlog za '" + ime + "' je uspešno poslat menadžmentu!");
+    
+    // Resetuj polja i zatvori
+    document.getElementById('suggest-name').value = "";
+    document.getElementById('suggest-reason').value = "";
+    modalSugg.classList.remove('active');
+  };
+
+  // Zatvaranje klikom van okvira
+  window.onclick = (e) => {
+    if (e.target == modalCons) modalCons.classList.remove('active');
+    if (e.target == modalSugg) modalSugg.classList.remove('active');
+  };
+</script>
+
+</body>
+</html>
