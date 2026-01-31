@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nova narudžbina – Menadžer</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Stilovi za rezultate pretrage */
+    .search-item {
+      padding: 12px;
+      border-bottom: 1px solid #e0f2f1;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-item:hover { background: #f0f4f4; }
+    .search-item:last-child { border-bottom: none; }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .side-panel section { margin-bottom: 20px; }
+    .mini-card { 
+      padding: 12px; margin-bottom: 8px; border-radius: 6px; 
+      display: flex; justify-content: space-between; align-items: center; 
+      font-size: 13px; font-weight: 500;
+    }
+    .bg-red { background: #ffebee; border: 1px solid #ffcdd2; color: #b71c1c; }
+    .bg-blue { background: #e8eaf6; border: 1px solid #c5cae9; color: #1a237e; }
+    
+    .add-btn { 
+      cursor: pointer; background: #b71c1c; color: white; border: none; 
+      width: 24px; height: 24px; border-radius: 50%; font-weight: bold; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      padding: 0;  
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 12px; background: #f0f4f4; color: #00796b; font-size: 13px; }
+    td { padding: 12px; border-bottom: 1px solid #e0f2f1; font-size: 14px; }
+    
+    .qty-input { width: 55px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; text-align: center; }
+    
+    .summary-box { 
+      background: #f1f8e9; padding: 20px; border-radius: 8px; 
+      margin-top: 20px; border: 1px solid #c8e6c9;
+    }
+    .search-bar { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid #ccc; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Veterinarska klinika - Nova narudžbina</h1>
+  <div class="user">Ulogovan: Menadžerka Iva Ivković</div>
+</header>
+
+<div class="container">
+  <div class="layout-grid">
+    
+    <aside class="side-panel">
+      <section class="card">
+        <h3>Artikli ispod minimuma</h3>
+        <p class="subtitle" style="margin-bottom:10px;">Klikni na + za automatsko dodavanje</p>
+        
+        <div class="mini-card bg-red">
+          <span>Vakcina protiv besnila</span>
+          <button class="add-btn" onclick="dodajUSto('Vakcina protiv besnila', 700, 4, 10, 30)">+</button>
+        </div>
+        <div class="mini-card bg-red">
+          <span>Vakcina protiv parvovirusa</span>
+          <button class="add-btn" onclick="dodajUSto('Vakcina protiv parvovirusa', 1000, 5, 15, 45)">+</button>
+        </div>
+        <div class="mini-card bg-red">
+          <span>Insulin</span>
+          <button class="add-btn" onclick="dodajUSto('Insulin', 1200, 3, 10, 22)">+</button>
+        </div>
+        <div class="mini-card bg-red">
+          <span>Tramadol</span>
+          <button class="add-btn" onclick="dodajUSto('Tramadol', 500, 4, 15, 20)">+</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Predlozi veterinara</h3>
+        <p class="subtitle">Pregled zahteva veterinara</p>
+        <div class="mini-card bg-blue"><span>Analgetik Meloxicam</span></div>
+        <div class="mini-card bg-blue"><span>Paraziticid Frontline</span></div>
+      </section>
+    </aside>
+
+    <main>
+      <section class="card">
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <div style="flex: 1; position: relative;">
+        <input type="text" id="katalog-search" class="search-bar" style="margin-bottom:0;" placeholder="🔍 Pretraži katalog artikala...">
+        <div id="search-results" class="card inner" style="display: none; position: absolute; top: 45px; left: 0; width: 100%; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 0;"></div>
+    </div>
+    <button class="btn-secondary" style="border-radius: 25px; padding: 0 20px; white-space: nowrap;" title="Artikli koji nisu u standardnom katalogu">+ Artikal van kataloga</button>
+</div>
+        <div class="card inner" style="padding: 0; overflow-x: auto;">
+          <table id="main-order-table">
+            <thead>
+              <tr>
+                <th>Artikal</th>
+                <th style="text-align:center">Trenutno</th>
+                <th style="text-align:center">Minimum</th>
+                <th style="text-align:center">Preporučeno</th>
+                <th>Količina</th>
+                <th>Cena (RSD)</th>
+                <th>Ukupno</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="summary-box">
+          <div style="display:flex; justify-content: space-between; align-items: center;">
+            <div><span style="color: #666; font-size: 13px;">BUDŽET ZA NABAVKU:</span><br><strong>150.000 RSD</strong></div>
+            <div style="text-align: right;"><span style="color: #666; font-size: 13px;">UKUPNA VREDNOST:</span><br><strong style="font-size: 24px; color: #2e7d32;" id="grand-total">0 RSD</strong></div>
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top: 20px;">
+          <button class="btn-ghost" onclick="location.href='narudzbina.html'">Otkaži</button>
+          <button class="btn-primary" style="background:#263238" onclick="prosledi()">ZAVRŠI I PROSLEDI NARUDŽBINU ✓</button>
+        </div>
+      </section>
+    </main>
+
+  </div>
+</div>
+
+
+
+<div id="modal-predlog" class="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000;">
+    <div class="card" style="width: 90%; max-width: 400px; padding: 20px;">
+        <h3 id="p-naziv" style="color: #00796b;">Naziv artikla</h3>
+        <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+        <p><strong>Veterinar:</strong> <span id="p-veterinar">Dr Marko Marković</span></p>
+        <p><strong>Razlog:</strong> <span id="p-razlog">Često nam traže klijenti, a nemamo u ponudi.</span></p>
+        <p><strong>Okvirna cena:</strong> <span id="p-cena">1.200 RSD</span></p>
+        
+        <div class="actions" style="margin-top: 20px;">
+            <button class="btn-ghost" onclick="document.getElementById('modal-predlog').style.display='none'">Zatvori</button>
+            <button class="btn-primary" id="btn-dodaj-predlog">Dodaj u narudžbinu</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+const detaljiPredloga = {
+    "Analgetik Meloxicam": { veterinar: "Dr Jovana Jovanović", razlog: "Bolji efekat kod mačaka, klijenti traže.", cena: 1100 },
+    "Paraziticid Frontline": { veterinar: "Dr Marko Marković", razlog: "Akcija kod dobavljača, vredi uzeti zalihu.", cena: 1500 }
+};
+
+function otvoriPredlog(naziv) {
+    const podaci = detaljiPredloga[naziv];
+    document.getElementById('p-naziv').innerText = naziv;
+    document.getElementById('p-veterinar').innerText = podaci.veterinar;
+    document.getElementById('p-razlog').innerText = podaci.razlog;
+    document.getElementById('p-cena').innerText = podaci.cena + " RSD";
+    
+    document.getElementById('modal-predlog').style.display = 'flex';
+
+    document.getElementById('btn-dodaj-predlog').onclick = function() {
+        dodajUSto(naziv, podaci.cena, 0, 0, "N/A");
+        document.getElementById('modal-predlog').style.display = 'none';
+    };
+}
+
+
+document.querySelectorAll('.mini-card.bg-blue').forEach(kartica => {
+    kartica.style.cursor = "pointer";
+    kartica.onclick = function() {
+        const naziv = this.querySelector('span').innerText;
+        otvoriPredlog(naziv);
+    };
+});
+ 
+  function dodajUSto(naziv, cena, trenutno, min, preporuceno) {
+    const tbody = document.querySelector('#main-order-table tbody');
+    for (let row of tbody.rows) {
+      if (row.cells[0].innerText === naziv) return;
+    }
+
+    const red = tbody.insertRow();
+    red.innerHTML = `
+      <td><strong>${naziv}</strong></td>
+      <td style="text-align:center">${trenutno}</td>
+      <td style="text-align:center">${min}</td>
+      <td style="text-align:center; color: #1565c0; font-weight:bold;">${preporuceno}</td>
+      <td><input type="number" value="" placeholder="0" class="qty-input" oninput="osveziCene()"></td>
+      <td>${cena}</td>
+      <td class="row-total">0</td>
+      <td><button onclick="this.parentElement.parentElement.remove(); osveziCene();" style="border:none; background:none; cursor:pointer;">🗑️</button></td>
+    `;
+    osveziCene();
+  }
+
+  function osveziCene() {
+    let ukupnoSve = 0;
+    document.querySelectorAll('#main-order-table tbody tr').forEach(red => {
+      const qty = red.querySelector('.qty-input').value || 0;
+      const cena = parseInt(red.cells[5].innerText);
+      const rowTotalCell = red.querySelector('.row-total');
+      const rowTotal = qty * cena;
+      rowTotalCell.innerText = rowTotal;
+      ukupnoSve += rowTotal;
+    });
+    document.getElementById('grand-total').innerText = ukupnoSve.toLocaleString() + " RSD";
+  }
+
+  function prosledi() {
+    if(confirm("Potvrdi slanje narudžbenice dobavljaču?")) {
+      location.href = 'menadzer.html';
+    }
+  }
+
+
+  const simuliraniKatalog = [
+    { naziv: "Antibiotik Amoxicillin", trenutno: 20, min: 10, preporuceno: 40, cena: 500 },
+    { naziv: "Vakcina protiv besnila", trenutno: 12, min: 5, preporuceno: 25, cena: 700 },
+    { naziv: "Insulin", trenutno: 12, min: 5, preporuceno: 30, cena: 1200 }
+  ];
+
+  const searchInput = document.getElementById('katalog-search');
+  const resultsDiv = document.getElementById('search-results');
+
+  searchInput.addEventListener('input', function() {
+    const term = this.value.toLowerCase();
+    resultsDiv.innerHTML = "";
+    
+    if (term.length < 2) {
+      resultsDiv.style.display = "none";
+      return;
+    }
+
+    const matches = simuliraniKatalog.filter(a => a.naziv.toLowerCase().includes(term));
+
+    if (matches.length > 0) {
+      matches.forEach(artikal => {
+        const div = document.createElement('div');
+        div.className = 'search-item';
+        div.innerHTML = `<strong>${artikal.naziv}</strong> <small style="color: #666;">(${artikal.trenutno} - min ${artikal.min})</small>`;
+        div.onclick = function() {
+          dodajUSto(artikal.naziv, artikal.cena, artikal.trenutno, artikal.min, artikal.preporuceno);
+          searchInput.value = "";
+          resultsDiv.style.display = "none";
+        };
+        resultsDiv.appendChild(div);
+      });
+      resultsDiv.style.display = "block";
+    } else {
+      resultsDiv.style.display = "none";
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.target !== searchInput) resultsDiv.style.display = "none";
+  });
+</script>
+</body>
+</html>

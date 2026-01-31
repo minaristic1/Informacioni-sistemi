@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Detalji narudžbine #0005</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .info-item label {
+      display: block;
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .info-item span {
+      font-weight: bold;
+      font-size: 16px;
+      color: #004d40;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th {
+      text-align: left;
+      background: #f0f4f4;
+      padding: 12px;
+      color: #00796b;
+      border-bottom: 2px solid #b2dfdb;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e0f2f1;
+    }
+    .total-row {
+      background: #e0f2f1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Veterinarska klinika - Narudžbina</h1>
+  <div class="user">Ulogovan: Menadžerka Iva Ivković</div>
+</header>
+
+<div class="container">
+  
+  <section class="card">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+      <h2>Narudžbina #0005</h2>
+      <button class="btn-ghost" onclick="window.history.back()">← Nazad na listu</button>
+    </div>
+
+    <div class="card inner info-grid">
+      <div class="info-item">
+        <label>Dobavljač</label>
+        <span>Vet Pharma</span>
+      </div>
+      <div class="info-item">
+        <label>Datum naručivanja</label>
+        <span>05.01.2026.</span>
+      </div>
+      <div class="info-item">
+        <label>Datum prijema</label>
+        <span>09.01.2026.</span>
+      </div>
+      <div class="info-item">
+        <label>Ukupna vrednost</label>
+        <span style="color: #2e7d32;">160.000 din</span>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 40px;">Stavke narudžbine</h2>
+    <div class="card inner" style="padding: 0; overflow-x: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Artikal</th>
+            <th style="text-align: center;">Količina</th>
+            <th style="text-align: right;">Cena po kom.</th>
+            <th style="text-align: right;">Ukupna cena</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Antibiotik Convenia</td>
+            <td style="text-align: center;">24</td>
+            <td style="text-align: right;">2.500 din</td>
+            <td style="text-align: right;">60.000 din</td>
+          </tr>
+          <tr>
+            <td>Antibiotik Ceporex</td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: right;">3.000 din</td>
+            <td style="text-align: right;">30.000 din</td>
+          </tr>
+          <tr>
+            <td>Analgetik Karprofen</td>
+            <td style="text-align: center;">20</td>
+            <td style="text-align: right;">500 din</td>
+            <td style="text-align: right;">10.000 din</td>
+          </tr>
+          <tr>
+            <td>Antiparazitik Heartgard</td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: right;">2.000 din</td>
+            <td style="text-align: right;">20.000 din</td>
+          </tr>
+          <tr>
+            <td>F10 dezinfekciono sredstvo</td>
+            <td style="text-align: center;">15</td>
+            <td style="text-align: right;">2.000 din</td>
+            <td style="text-align: right;">30.000 din</td>
+          </tr>
+          <tr>
+            <td>Toplomer</td>
+            <td style="text-align: center;">5</td>
+            <td style="text-align: right;">2.000 din</td>
+            <td style="text-align: right;">10.000 din</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="3" style="text-align: right;">UKUPNO:</td>
+            <td style="text-align: right; color: #1b5e20;">160.000 din</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="actions" style="margin-top: 30px;">
+      <div class="actions-left">
+         <button class="btn-secondary" onclick="window.print()">🖨️ Štampaj narudžbenicu</button>
+      </div>
+      <div class="actions-right">
+         </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

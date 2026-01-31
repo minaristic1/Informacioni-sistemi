@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Veterinarska klinika – Narudžbine</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    th {
+      text-align: left;
+      background: #f0f4f4;
+      padding: 12px;
+      color: #00796b;
+      border-bottom: 2px solid #b2dfdb;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e0f2f1;
+    }
+    
+    .status {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .status-narucena { color: #f9a825; background: #fffde7; }
+    .status-poslata { color: #1976d2; background: #e3f2fd; }
+    .status-isporucena { color: #388e3c; background: #e8f5e9; }
+    .status-otkazana { color: #d32f2f; background: #ffebee; }
+    
+    .btn-table {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+
+    .hidden-row {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Veterinarska klinika – Narudžbine</h1>
+  <div class="user">Ulogovan: Menadžerka Iva Ivković </div>
+</header>
+
+<div class="container">
+
+
+  <section class="card" id="page-1">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h2>Pregled svih narudžbina</h2>
+      <button class="btn-primary" onclick="location.href='nova_narudzbina.html'">+ Nova narudžbina</button>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Filtriraj po statusu</label>
+        <select id="filter-status">
+          <option value="sve">Svi statusi</option>
+          <option value="naručena">Naručena</option>
+          <option value="poslata">Poslata</option>
+          <option value="isporučena">Isporučena</option>
+          <option value="otkazana">Otkazana</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Filtriraj po datumu</label>
+        <input type="date" id="filter-date">
+      </div>
+      <div class="form-group" style="flex: 0; justify-content: flex-end;">
+        <button class="btn-ghost" id="btn-reset-filters" style="white-space: nowrap;">Poništi filtere</button>
+      </div>
+    </div>
+
+    <div class="card inner" style="padding: 0; overflow-x: auto;">
+      <table id="orders-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Datum</th>
+            <th>Dobavljač</th>
+            <th>Vrednost</th>
+            <th>Status</th>
+            <th>Prijem / Datum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="order-row" data-status="naručena" data-date="2026-01-31">
+            <td>#0007</td>
+            <td>31.01.2026.</td>
+            <td>Animal Care</td>
+            <td>55.200 din</td>
+            <td><span class="status status-narucena">Naručena</span></td>
+            <td>-</td>
+          </tr>
+          <tr class="order-row" data-status="poslata" data-date="2026-01-28">
+            <td>#0006</td>
+            <td>15.01.2026.</td>
+            <td>Vet Pharma</td>
+            <td>72.500 din</td>
+            <td><span class="status status-poslata">Poslata</span></td>
+            <td><button class="btn-secondary btn-table">Prijem robe</button></td>
+          </tr>
+          <tr class="order-row" data-status="isporučena" data-date="2026-01-20">
+            <td><a href="detalji_narudzbine.html" style="color: #00796b; font-weight: bold;">#0005</a></td>
+            <td>05.01.2026.</td>
+            <td>Vet Pharma</td>
+            <td>160.000 din</td>
+            <td><span class="status status-isporucena">Isporučena</span></td>
+            <td>09.01.2026.</td>
+          </tr>
+          <tr class="order-row" data-status="isporučena" data-date="2026-01-20">
+            <td><a href="detalji_narudzbine_2.html" style="color: #00796b; font-weight: bold;">#0004</td>
+            <td>20.12.2025.</td>
+            <td>Vet Pharma</td>
+            <td>48.400 din</td>
+            <td><span class="status status-isporucena">Isporučena</span></td>
+            <td>24.12.2025.</td>
+          </tr>
+          <tr class="order-row" data-status="otkazana" data-date="2026-01-10">
+            <td>#0003</td>
+            <td>10.12.2025.</td>
+            <td>Vet Pharma</td>
+            <td>15.100 din</td>
+            <td><span class="status status-otkazana">Otkazana</span></td>
+            <td>-</td>
+          </tr>
+          <tr class="order-row" data-status="otkazana" data-date="2026-01-10">
+            <td>#0002</td>
+            <td>30.11.2025.</td>
+            <td>Vet Pharma</td>
+            <td>105.100 din</td>
+            <td><span class="status status-isporucena">Isporučena</span></td>
+            <td>03.12.2025.</td>
+          </tr>
+          <tr class="order-row" data-status="otkazana" data-date="2026-01-10">
+            <td>#0001</td>
+            <td>13.11.2025.</td>
+            <td>Vet Pharma</td>
+            <td>35.220 din</td>
+            <td><span class="status status-isporucena">Isporučena</span></td>
+            <td>17.11.2025.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+  const filterStatus = document.getElementById('filter-status');
+  const filterDate = document.getElementById('filter-date');
+  const resetBtn = document.getElementById('btn-reset-filters');
+  const rows = document.querySelectorAll('.order-row');
+
+  function applyFilters() {
+    const selectedStatus = filterStatus.value.toLowerCase();
+    const selectedDate = filterDate.value; 
+    rows.forEach(row => {
+      const rowStatus = row.getAttribute('data-status').toLowerCase();
+      const rowDate = row.getAttribute('data-date');
+
+      const statusMatch = (selectedStatus === 'sve' || rowStatus === selectedStatus);
+      const dateMatch = (selectedDate === '' || rowDate === selectedDate);
+
+      if (statusMatch && dateMatch) {
+        row.classList.remove('hidden-row');
+      } else {
+        row.classList.add('hidden-row');
+      }
+    });
+  }
+
+  filterStatus.addEventListener('change', applyFilters);
+  filterDate.addEventListener('change', applyFilters);
+
+  resetBtn.addEventListener('click', () => {
+    filterStatus.value = 'sve';
+    filterDate.value = '';
+    applyFilters();
+  });
+
+  
+  document.addEventListener('click', function(e) {
+   if (e.target.classList.contains('btn-table')) {
+    location.href = 'prijem.html'; 
+   }
+  });
+</script>
+
+</body>
+</html>
