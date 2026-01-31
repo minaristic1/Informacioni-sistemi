@@ -4,7 +4,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{SlucajeviUpotrebe/dijagramSlu.png}
+    \includegraphics[width=0.8\linewidth]{dijagramSlu.png}
     \caption{Slučaj upotrebe: Upravljanje terminima i zakazivanje pregleda}
     \label{fig:placeholder}
 \end{figure}
@@ -36,7 +36,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.2\linewidth]{Dijagrami/dijagramAktivnosti1.png}
+    \includegraphics[width=1.2\linewidth]{dijagramAktivnosti1.png}
     \caption{Dijagram aktivnosti: Online zakazivanje}
     \label{fig:placeholder}
 \end{figure}
@@ -69,14 +69,14 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{Dijagrami/bpmnZT.png}
+    \includegraphics[width=1\linewidth]{bpmnZT.png}
     \caption{BPMN dijagram: Zakazivanje termina}
     \label{fig:placeholder}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{Dijagrami/dijagramSekvenceZP.png}
+    \includegraphics[width=1\linewidth]{dijagramSekvenceZP.png}
     \caption{Dijagram sekvence: Zakazivanje termina}
     \label{fig:placeholder}
 \end{figure}
@@ -110,6 +110,13 @@
 \end{enumerate}
 \indent \textbf{Dodatne informacije} - Vlasnik ljubimca može da promeni postojeći termin pregleda uživo u klinici ili putem telefona. Ukoliko ne postoji zakazan termin, a vlasnik zeli novi onda administrativni radnik unosi i potrebne podatke o vlasniku ljubimca u teblu za zakazivanje, a to su ime i prezime vlasnika ljubimca, broj telefona vlasnika ljubimca, mejl vlasnika ljubimca, vrsta ljubimca, željeni pregled (vakcinacija, intervencija, operacija, kontrolni pregled,...). \\
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{bpmnPT.png}
+    \caption{BPMN dijagram: Promena postojećeg termina}
+    \label{fig:placeholder}
+\end{figure}
+
 \subsubsection{Slučaj upotrebe: Otkazivanje termina}
 \indent \textbf{Kratak opis} - Vlasnik ljubimca javlja administrativnom radniku da želi da otkaže postojeći zakazan termin. Administrativni radnik otkazuje postojeći termin pregleda. \\
 \indent \textbf{Akteri} - Administrativni radnik, vlasnik ljubimca \\
@@ -132,3 +139,10 @@
  \item[A3.]\textbf{Tehnički problem pri brisanju podataka.} Administrativni radnik u koraku 5 glavnog toka ne može da obriše podatke i pokušava ponovo malo kasnije.
 \end{enumerate}
 \indent \textbf{Dodatne informacije} - Podaci koji se brišu su ime i prezime vlasinka ljubimca, broj telefona vlasnika ljubimca, mejl vlasnika ljubimca, vrsta ljubimca, vrsta pregled (vakcinacija, intervencija, operacija, kontrolni pregled,...). Vlasnik ljubimca može da otkaže pregled uživo u klinici ili putem telefona. \\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{dijagramAkt1.png}
+    \caption{Dijagram aktivnosti: Otkazivanje termina}
+    \label{fig:placeholder}
+\end{figure}
