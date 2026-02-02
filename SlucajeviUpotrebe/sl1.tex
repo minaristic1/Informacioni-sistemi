@@ -54,7 +54,7 @@
  \item[4.] Vlasnik ljubimca bira slobodan termin.
  \item[5.] Administrativni radnik zahteva potrebne podatke od vlasnika ljubimca.
  \item[6.] Vlasnik ljubimca daje potrebne podatke.
- \item[7.] Administrativni radnik unosi u tabelu potrebne podatke.
+ \item[7.] Administrativni radnik unosi potrebne podatke.
  \item[8.] Administrativni radnik potvrđuje zakazani termin. 
  \item[9.] Sistem ažurira tabelu za zakazivanje termina.
  \item[10.] Sistem ažurira bazu podataka.
@@ -97,7 +97,7 @@
  \item[6.] Vlasnik ljubimca bira novi slobodan termin.
  \item[7.] Administrativni radnik unosi podatke u tabelu za zakazivanje termina.
  \item[8.] Administrativni radnik potvrđuje novi zakazani termin. 
- \item[9.] Sistem ažurira tabelu za zakazivanje pregleda.
+ \item[9.] Sistem ažurira tabelu za zakazivanje termina.
  \item[10.] Sistem ažurira bazu podataka.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
@@ -127,16 +127,14 @@
  \item [1.] Vlasnik ljubimca se obraća administrativnom radniku radi otkazivanja postojećeg termina.
  \item[2.] Administrativni radnik otvara tabelu za zakazivanje terminima.
  \item[3.] Administrativni radnik nalazi zakazan pregled.
- \item[4.] Administrativni radnik oslobađa taj termin.
- \item[5.] Administrativni radnik briše podatke iz tabele za zakazivanje termina. 
- \item[6.] Sistem ažurira tabelu za zakazivanje pregleda.
- \item[7.] Sistem ažurira bazu podataka.
+ \item[4.] Administrativni radnik briše taj termin zajedno sa unetim podacima iz tabele za zakazivanje tremina. 
+ \item[5.] Sistem ažurira tabelu za zakazivanje termina.
+ \item[6.] Sistem ažurira bazu podataka.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
 \begin{enumerate}
  \item [A1.]\textbf{Nema zakazanog termina u tabeli} Ukoliko u koraku 3 glavnog toka administrativni radnik ne pronađe zakazani pregled on obaveštava vlasnika ljubimca da ne postoji zakazan pregled i proces se završava.
- \item[A2.]\textbf{Tehnički problem pri oslobađanju termina.} Administrativni radnik u koraku 4 glavnog toka ne može da oslobodi termin i pokušava ponovo malo kasnije.
- \item[A3.]\textbf{Tehnički problem pri brisanju podataka.} Administrativni radnik u koraku 5 glavnog toka ne može da obriše podatke i pokušava ponovo malo kasnije.
+ \item[A2.]\textbf{Tehnički problem pri oslobađanju termina.} Administrativni radnik u koraku 4 glavnog toka ne može da obriše termin i pokušava ponovo malo kasnije.
 \end{enumerate}
 \indent \textbf{Dodatne informacije} - Podaci koji se brišu su ime i prezime vlasinka ljubimca, broj telefona vlasnika ljubimca, mejl vlasnika ljubimca, vrsta ljubimca, vrsta pregled (vakcinacija, intervencija, operacija, kontrolni pregled,...). Vlasnik ljubimca može da otkaže pregled uživo u klinici ili putem telefona. \\
 
