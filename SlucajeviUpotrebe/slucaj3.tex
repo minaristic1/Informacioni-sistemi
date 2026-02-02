@@ -1,60 +1,67 @@
-\subsection{Upravaljanje zalihama lekova i jednokratne opreme} 
+\subsection{Upravljanje zalihama lekova i jednokratne opreme} 
 \indent Ovaj slučaj upotrebe omogućava praćenje trenutnog stanja zaliha lekova i medicinskog potrošnog materijala u veterinarskoj klinici. Sistem prati potrošnju, upozorava na moguće nestašice i omogućava blagovremeno kreiranje narudžbina kako bi se održala neprekidna dostupnost potrebnih sredstava za rad. \\
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{SlucajeviUpotrebe/dijagram3.png}
-    \caption{Slučaj upotrebe: Upravljanje zalihama lekova i jednokratnom opremom}
+    \includegraphics[width=0.7\linewidth]{Dijagrami/dijagram_slucajeva_upotrebe_3.png}
+    \caption{Slučaj upotrebe: Upravljanje zalihama lekova i jednokratne opreme}
     \label{fig:placeholder}
 \end{figure}
 
 \subsubsection{Evidencija potrosnje}
-\indent \textbf{Kratak opis} - Veterinar belezi kada iskoristi odredjeni lijek ili materijal.\\
+\indent \textbf{Kratak opis} - Veterinar belezi kada iskoristi odredjeni lek ili materijal.\\
 \indent \textbf{Akteri} - Veterinar\\
 \indent \textbf{Preduslovi} - Veterinar je ulogovan u sistem i ima odgovarajuće privilegije za unos potrošnje. U sistemu postoji katalog lekova i medicinskog materijala.
 \indent \textbf{Postuslov} - Stanje zaliha za izabrani artikal je ažurirano. Ako je artikal ispod minimuma, sistem evidentira obaveštenje za menadžera. \\
 \indent \textbf{Glavni tok:}
 \begin{enumerate}
-    \item Veterinar otvara katalog lijekova i opreme. 
-    \item Veterinar bira artikal koji je koristio i unosi kolicinu koja je potrosena. 
-    \item Veterinar potvrdjuje unos. 
+    \item Veterinar otvara katalog lekova i opreme. 
+    \item Veterinar bira artikal koji je koristio i unosi količinu koja je potrošena. 
+    \item Veterinar potvrđuje unos. 
     \item Sistem proverava da li je unos validan i ažurira stanje zaliha. Ako količina premašuje raspoloživu zalihu, ide se u alternativni tok A1. 
     \item Ako novo stanje padne ispod definisanog minimuma, sistem generiše obaveštenje za menadžera.
-    \item Veterinar ponavlja korake 2-5 ukoliko ima jos artikala koje je koristio. Ako ih nema, zavrsava unos.
+    \item Veterinar ponavlja korake 2-5 ukoliko ima jos artikala koje je koristio. Ako ih nema, završava unos.
     \item Sistem prikazuje opciju veterinaru da doda predlog za nabavku novih artikala.
     Ako veterinar želi da doda predlog, ide se u alternativni tok A2.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
 \begin{enumerate}
-    \item[A1.]\textbf{Uneta kolicina je veca od dostupne zalihe} 
+    \item[A1.]\textbf{Uneta količina je veća od dostupne zalihe} 
     \begin{enumerate}
         \item[1.] Sistem odbija unos i prikazuje poruku o nedovoljnoj zalihi.
         \item[2.] Sistem vraća veterinara na izbor artikla (glavni tok, korak 2).
     \end{enumerate}
-    \item[A2.]\textbf{Veterinar predlaze novi artikal za narudzbinu} 
+    \item[A2.]\textbf{Veterinar predlaže novi artikal za narudžbinu} 
         \begin{enumerate}
             \item[1.] Veterinar bira opciju „Predlog nabavke“.
-            \item[2.] Navodi podatke o lijeku ili opremi koju bi zeleo da bude narucena.
-            \item[3.] Sistem potvrđuje da je predlog registrovan
+            \item[2.] Navodi podatke o leku ili opremi koju bi želeo da bude naručena.
+            \item[3.] Sistem potvrđuje da je predlog registrovan.
             \item[4.] Sistem šalje obaveštenje menadžeru.
         \end{enumerate}
 \end{enumerate}
 
-\subsubsection{Kreiranje narudzbine}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Dijagrami/dijagram_aktivnosti_evidencija_potrosnje.png}
+    \caption{Dijagram aktivnosti - Evidencija potrošnje}
+    \label{fig:placeholder}
+\end{figure}
+
+\subsubsection{Kreiranje narudžbine}
 \indent \textbf{Kratak opis} - Menadžer prima obaveštenja o artiklima koje treba naručiti - bilo da je zaliha ispod minimuma ili je veterinar predložio novi artikal - i kreira narudžbenicu na osnovu tih informacija.\\
-\indent \textbf{Akteri} - Menadzer\\
+\indent \textbf{Akteri} - Menadžer\\
 \indent \textbf{Preduslovi} - Menadžer je ulogovan u sistem. Sistem vodi evidenciju zaliha i potrošnje. Sistem može primati predloge od veterinara i detektovati artikle ispod minimuma.\\
 \indent \textbf{Postuslov} - Narudžbenica je kreirana i evidentirana u sistemu. \\
 \indent \textbf{Glavni tok:}
 \begin{enumerate}
     \item Sistem generiše obaveštenja menadžeru o artiklima čija je zaliha ispod minimuma i predlozima od veterinara za artikle koji ranije nisu naručivani.
     \item Menadžer otvara obaveštenja i pristupa listi artikala.
-    \item Menadžer bira artikal koji želi da naruči iz te liste ili druge artikle iz kataloga. Ukoliko zeli da naruci neki novi artikal koji se ne nalazi u katalogu, ide se na alternativni tok A1.
+    \item Menadžer bira artikal koji želi da naruči iz te liste ili druge artikle iz kataloga. Ukoliko zeli da naruči neki novi artikal koji se ne nalazi u katalogu, ide se na alternativni tok A1.
     \item Sistem, po potrebi, predlaže količinu na osnovu istorije potrošnje.
      \item Menadžer potvrđuje ili menja količine.
     \item Sistem proverava budžet i prikazuje upozorenje ako je prekoračen. Ako narudžbina premašuje budžet ide se u alternativni tok A2.
     
-    \item Koraci 3-6 se ponavljaju za sledece artikle, dok menadzer ne zavrsi izbor artikala.
+    \item Koraci 3-6 se ponavljaju za sledece artikle, dok menadžer ne završi izbor artikala.
     \item Menadžer kreira narudžbenicu, šalje je dobavljaču i sistem je evidentira.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
@@ -66,7 +73,7 @@
             \item[3.] Sistem dodaje novi artikal u privremenu listu narudžbine.
             \item[4.] Tok se vraća na glavni tok, korak 5 (menadžer sada menja ili potvrđuje količinu).
         \end{enumerate}
-    \item[A2.]\textbf{Narudzbina premasuje budzet}
+    \item[A2.]\textbf{Narudzbina premašuje budzet}
         \begin{enumerate}
             \item[1.] Sistem prikazuje upozorenje da bi narudžbina premašila dozvoljeni budžet.
             \item[2.] Menadžer menja količine ili uklanja artikle iz narudžbine.
@@ -74,9 +81,16 @@
         \end{enumerate}  
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Dijagrami/dijagram_aktivnosti_kreiranje_narudzbine.png}
+    \caption{Dijagram aktivnosti - Kreiranje narudžbine}
+    \label{fig:placeholder}
+\end{figure}
+
 \subsubsection{Prijem robe}
 \indent \textbf{Kratak opis} - Menadžer prima naručenu robu u kliniku i ažurira stanje zaliha u katalogu, uključujući beleženje količina i datuma prijema. \\
-\indent \textbf{Akteri} - Menadzer\\
+\indent \textbf{Akteri} - Menadžer\\
 \indent \textbf{Preduslovi} - Narudžbenica je kreirana i roba je stigla u kliniku. Menadžer je ulogovan u sistem.\\
 \indent \textbf{Postuslov} - Katalog dostupnih lekova i materijala je ažuriran. Sistem evidentira primljene količine i datume prijema. \\
 \indent \textbf{Glavni tok:}
@@ -85,23 +99,23 @@
     \item Sistem prikazuje listu narudžbenica spremnih za prijem.
     \item Menadžer bira narudžbenicu koju prima.
     \item Menadžer unosi stvarno primljene količine za artikal.
-    \item Sistem proverava da li unete količine odgovaraju naručenim i upozorava u slučaju odstupanja. Ako je primljena manja kolicina od naručene, ide se u alternativni tok A1. Ako je primljena veca kolicina od naručene, ide se u alternativni tok A2.
+    \item Sistem proverava da li unete količine odgovaraju naručenim i upozorava u slučaju odstupanja. Ako je primljena manja količina od naručene, ide se u alternativni tok A1. Ako je primljena veća količina od naručene, ide se u alternativni tok A2.
     \item Sistem ažurira stanje zaliha u katalogu i automatski evidentira datum prijema i primljene količine.
-    \item Koraci 4-6 se ponavljaju sa sledeci artikal. Ukoliko su svi dostavljeni artikli evindetirani, menadzer zavrsava prijem robe.
+    \item Koraci 4-6 se ponavljaju za sledeći artikal. Ukoliko su svi dostavljeni artikli evidentirani, menadžer završava prijem robe.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
 \begin{enumerate}
-    \item[A1.]\textbf{Stiglo je manje robe nego naruceno} 
+    \item[A1.]\textbf{Stiglo je manje robe nego naručeno} 
     \begin{enumerate}
         \item[1.] Sistem prikazuje upozorenje o manjku robe.
-        \item[2.] Menadžer evidentira manjak  i kontaktira dobavljaca.
+        \item[2.] Menadžer evidentira manjak  i kontaktira dobavljača.
         \item[3.] Sistem kreira obaveštenje koje će biti prikazano menadžeru prilikom sledećeg kreiranja narudžbine.
         \item[4.] Tok se vraća na glavni tok, korak 6.
     \end{enumerate}
-    \item[A2.] \textbf{Stiglo je vise robe nego naruceno} 
+    \item[A2.] \textbf{Stiglo je više robe nego naručeno} 
     \begin{enumerate}
         \item[1.] Sistem prikazuje upozorenje o višku robe.
-        \item[2.] Menadžer kontaktira dobavlja.
+        \item[2.] Menadžer kontaktira dobavljača.
         \item[3.] Menadžer prima ili vraća višak robe.
         \item[3.] Sistem evidentira odluku kao napomenu uz narudžbenicu.
         \item[4.] Tok se vraća na glavni tok, korak 6.
@@ -110,21 +124,7 @@
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\linewidth]{Dijagrami/dijagram_aktivnosti_kreiranje_narudzbine.png}
-    \caption{Dijagram aktivnosti - Kreiranje narudzbine}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\linewidth]{Dijagrami/dijagram_aktivnosti_evidencija_potrosnje.png}
-    \caption{Dijagram aktivnosti - Evidencija potrosnje}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\linewidth]{Dijagrami/dijagram_aktivnosti_prijem_robe.png}
-    \caption{Dijagram aktivnosti -Prijem robe}
+    \includegraphics[width=0.9\linewidth]{Dijagrami/dijagram_aktivnosti_prijem_robe.png}
+    \caption{Dijagram aktivnosti - Prijem robe}
     \label{fig:placeholder}
 \end{figure}
