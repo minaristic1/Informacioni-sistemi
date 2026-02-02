@@ -2,31 +2,30 @@
 <html lang="sr">
 <head>
   <meta charset="UTF-8" />
-  <title>Veterinarska ordinacija – Unos pregleda</title>
+  <title>Veterinarska klinika PetCare</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <h1>Veterinarska ordinacija – Unos pregleda</h1>
-  <div class="user">Ulogovan: dr vet. med. Marko Marković</div>
+  <h1>Veterinarska klinika PetCare</h1>
+  <div class="user">Ulogovan: dr vet. med. Milica Nikolic</div>
 </header>
 
 <div class="container">
 
   <div class="steps">
     <div class="step active" data-step-indicator="1"><span class="index">1</span> Izbor vlasnika i životinje</div>
-    <div class="step" data-step-indicator="2"><span class="index">2</span> Novi vlasnik / nova životinja</div>
-    <div class="step" data-step-indicator="3"><span class="index">3</span> Podaci o pregledu</div>
-    <div class="step" data-step-indicator="4"><span class="index">4</span> Tretmani i analize</div>
-    <div class="step" data-step-indicator="5"><span class="index">5</span> Pregled i potvrda</div>
+    <div class="step" data-step-indicator="2"><span class="index">2</span> Novi vlasnik</div>
+	<div class="step" data-step-indicator="2"><span class="index">3</span> Nova životinja</div>
+    <div class="step" data-step-indicator="3"><span class="index">4</span> Podaci o pregledu</div>
+    <div class="step" data-step-indicator="4"><span class="index">5</span> Tretmani i analize</div>
+    <div class="step" data-step-indicator="5"><span class="index">6</span> Pregled i potvrda</div>
   </div>
 
-  <!-- Sve stranice ostaju iste kao ranije -->
-  <!-- PAGE 1 -->
   <section class="card" id="page-1">
-    <h2>Izbor životinje iz baze</h2>
-    <p class="subtitle">Veterinar bira životinju po broju kartona ili podacima o vlasniku.</p>
+	<!-- Korak 1: Veterinar je ulogovan u sistem i treba da otvori karton životinje -->
+    <h2>Izbor životinje iz baze:</h2>
 
     <div class="form-row">
       <div class="form-group">
@@ -41,37 +40,42 @@
         <label>Kontakt (mejl ili telefon)</label>
         <input type="text" placeholder="npr. email@primer.com" />
       </div>
+	  <div class="form-group">
+		<BR>
+        <button class="btn-secondary">TRAŽI</button>
+      </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label>Rezultati pretrage (primer)</label>
+        <label>Rezultati pretrage:</label>
         <select>
           <option>Odaberite životinju...</option>
-          <option>Pas – Rex (vlasnik: Jovan Jovanović)</option>
-          <option>Mačka – Mica (vlasnik: Ana Anić)</option>
+          <option>Pas – Rex (vlasnik/ca: Mina Ristić)</option>
+          <option>Mačka – Mica (vlasnik/ca: Alma Hodžić)</option>
         </select>
       </div>
     </div>
 
     <div class="info-box">
-      Ako vlasnik ili životinja ne postoje u sistemu, možete preći na dodavanje novog vlasnika ili nove životinje.
+      Ako vlasnik/ca ili životinja ne postoje u sistemu, možete preći na dodavanje novog vlasnika ili nove životinje.
     </div>
 
     <div class="actions">
       <div class="actions-left">
-        <button class="btn-secondary" data-go-to="2">Novi vlasnik / nova životinja</button>
+        <button class="btn-secondary" data-go-to="2">Novi vlasnik</button>
+        <button class="btn-secondary" data-go-to="3">Nova životinja</button>
       </div>
       <div class="actions-right">
-        <button class="btn-primary" data-go-to="3">Otvori karton i nastavi</button>
+        <button class="btn-primary" data-go-to="4">Otvori karton i nastavi</button>
       </div>
     </div>
   </section>
 
-  <!-- PAGE 2 -->
+  <!-- Vlasnik nije u sistemu -->
   <section class="card hidden" id="page-2">
-    <h2>Novi vlasnik i/ili nova životinja</h2>
-    <p class="subtitle">Koristi se kada vlasnik ne postoji u sistemu ili životinja nema karton.</p>
+    <h2>Novi vlasnik</h2>
+    <p class="subtitle">Koristi se kada vlasnik ne postoji u sistemu.</p>
 
     <div class="card inner">
       <h3>Podaci o novom vlasniku</h3>
@@ -95,11 +99,26 @@
           <input type="tel" />
         </div>
         <div class="form-group">
-          <label>Dokument</label>
+          <label>Adresa</label>
           <input type="text" />
         </div>
       </div>
     </div>
+
+    <div class="actions">
+      <div class="actions-left">
+        <button class="btn-ghost" data-go-to="1">Nazad</button>
+      </div>
+      <div class="actions-right">
+        <button class="btn-primary" data-go-to="1">Sačuvaj i vrati se</button>
+        <button class="btn-secondary" data-go-to="3">Nastavi</button>
+      </div>
+    </div>
+  </section>
+  <!-- Životinja nije u sistemu -->
+  <section class="card hidden" id="page-6">
+    <h2>Nova životinja</h2>
+    <p class="subtitle">Kreiranje novog kartona.</p>
 
     <div class="card inner">
       <h3>Podaci o novoj životinji</h3>
@@ -131,30 +150,54 @@
       </div>
       <div class="actions-right">
         <button class="btn-primary" data-go-to="1">Sačuvaj i vrati se</button>
-        <button class="btn-secondary" data-go-to="3">Nastavi</button>
+        <button class="btn-secondary" data-go-to="4">Nastavi</button>
       </div>
     </div>
   </section>
-
-  <!-- PAGE 3 -->
+  <!-- Pregled -->
   <section class="card hidden" id="page-3">
-    <h2>Unos podataka o pregledu</h2>
+	<div class="card inner">
+		<div class="form-row" style="background-color: #b2dfdb; padding: 15px">
+			<div class="form-group">
+				<label>Broj kartona</label>
+				<p>2024-00123</p>
+			</div>
+			<div class="form-group">
+				<label>Ime</label>
+				<p>Ema</p>
+			</div>
+			<div class="form-group">
+				<label>Vrsta</label>
+				<p>Pas</p>
+			</div>
+			<div class="form-group">
+				<label>Starost</label>
+				<p>13</p>
+			</div>
+		</div>
+    </div>
+
+
+
+	
 
     <div class="form-row">
       <div class="form-group">
         <label>Datum pregleda</label>
-        <input type="date" />
+        <p id="datumPregleda"></p>
       </div>
       <div class="form-group">
         <label>Vreme pregleda</label>
-        <input type="time" />
+		<p id="vremePregleda"></p>
       </div>
+	  <br>
       <div class="form-group">
         <label>Tip pregleda</label>
         <select>
           <option>Redovan</option>
           <option>Hitni</option>
           <option>Kontrolni</option>
+		  <option>Vakcinacija</option>
         </select>
       </div>
     </div>
@@ -179,7 +222,7 @@
         <button class="btn-ghost" data-go-to="1">Nazad</button>
       </div>
       <div class="actions-right">
-        <button class="btn-secondary" data-go-to="4">Nastavi</button>
+        <button class="btn-secondary" data-go-to="5">Nastavi</button>
       </div>
     </div>
   </section>
@@ -239,10 +282,10 @@
 
     <div class="actions">
       <div class="actions-left">
-        <button class="btn-ghost" data-go-to="3">Nazad</button>
+        <button class="btn-ghost" data-go-to="4">Nazad</button>
       </div>
       <div class="actions-right">
-        <button class="btn-secondary" data-go-to="5">Pregled</button>
+        <button class="btn-secondary" data-go-to="6">Pregled</button>
       </div>
     </div>
   </section>
@@ -254,7 +297,7 @@
 
     <div class="actions">
       <div class="actions-left">
-        <button class="btn-ghost" data-go-to="4">Nazad</button>
+        <button class="btn-ghost" data-go-to="5">Nazad</button>
       </div>
       <div class="actions-right">
         <button class="btn-secondary" data-go-to="1">Odustani</button>
