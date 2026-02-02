@@ -109,7 +109,7 @@
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{Dijagrami/dfd.png}
-    \caption{DFD dijagram}
+    \caption{Dijagram toka podataka nivoa 0}
     \label{fig:placeholder}
 \end{figure}
 
@@ -117,22 +117,138 @@
 \include{SlucajeviUpotrebe/SU2}
 \include{SlucajeviUpotrebe/slucaj3}
 
+
 \newpage
-\begin{figure}[H]
-\makebox[\textwidth][c]{%
-    \includegraphics[width=1.3\textwidth]{Dijagrami/dijagram_klasa.png}
-}
-\caption{Dijagram klasa podataka}
-\label{fig:dijagram-klasa}
-\end{figure}
+
+\include{PomocniTexFajlovi/modelbaze}
 
 \newpage
 
 \include{PomocniTexFajlovi/arhitektura}
 
-\include{PomocniTexFajlovi/modelbaze}
 
 \section{Korisnički interfejs}
+\subsection{Zakazivanje}
+\subsection{Online zakazivanje}
+\subsection{Pregled}
+\subsection{Evidencija potrošnje}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Evidencija_potrosnje_1.png}
+    }
+    \caption{Početni ekran aplikacije na kojem korisnik bira glavnu grupu i odgovarajuću podkategoriju za prikaz artikala.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Evidencija_potrosnje_2.png}
+    }
+    \caption{Prikaz liste artikala nakon izbora grupe i podkategorije.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Evidencija_potrosnje_3.png}
+    }
+    \caption{Modalni prozor za evidentiranje potrošnje izabranog artikla, sa unosom potrošene količine.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Evidencija_potrosnje_4.png}
+    }
+    \caption{Forma za slanje predloga za novu nabavku artikla koji trenutno ne postoji u katalogu.}
+\end{figure}
+
+\subsection{Narudžbine}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Narudzbine_1.png}
+    }
+    \caption{Pregled svih dosadašnjih narudžbina.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Narudzbine_2.png}
+    }
+    \caption{Pregled narudžbina filtriranih po statusu.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Narudzbine_3.png}
+    }
+    \caption{Klikom na ID narudžbine korisnik se preusmerava na stranicu sa detaljnim prikazom narudžbine.}
+\end{figure}
+
+\subsection{Nova narudžbina}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Nova_narudzbina_1.png}
+    }
+    \caption{Početni ekran za pravljenje nove narudžbine.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Nova_narudzbina_2.png}
+    }
+    \caption{Klikom na + pored artikala ispid minimuma, oni se dodaju u narudžbinu.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Nova_narudzbina_3.png}
+    }
+    \caption{Korisnik je u mogućnosti da doda jos artikala iz kataloga i prilikom pretrage prikazuje mu se trenutno stanje tog artikla.}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Nova_narudzbina_4.png}
+    }
+    \caption{Pregled predloga vetarinara.}
+\end{figure}
+
+\subsection{Prijem robe}
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Prijem_1.png}
+    }
+    \caption{Klikom na dugme Prijem robe u tabeli Narudžbina, korisnik je preusmeren na početnu stranicu Prijema robe..}
+\end{figure}
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Prijem_2.png}
+    }
+    \caption{Popunjavanje količina pojedinačnih artikala (crveno ukoliko se razlikuje od naručene količine).}
+\end{figure}
+
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.4\linewidth]{UI/Prijem_3.png}
+    }
+    \caption{Modalni prozor koji se pojavljuje ukoliko je detektovano odstupanje. }
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
