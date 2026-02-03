@@ -9,7 +9,7 @@
 \end{figure}
 
 \subsubsection{Evidencija potrosnje}
-\indent \textbf{Kratak opis} - Veterinar belezi kada iskoristi odredjeni lek ili materijal.\\
+\indent \textbf{Kratak opis} - Veterinar beleži kada iskoristi određeni lek ili materijal.\\
 \indent \textbf{Akteri} - Veterinar\\
 \indent \textbf{Preduslovi} - Veterinar je ulogovan u sistem i ima odgovarajuće privilegije za unos potrošnje. U sistemu postoji katalog lekova i medicinskog materijala.
 \indent \textbf{Postuslov} - Stanje zaliha za izabrani artikal je ažurirano. Ako je artikal ispod minimuma, sistem evidentira obaveštenje za menadžera. \\
@@ -20,7 +20,7 @@
     \item Veterinar potvrđuje unos. 
     \item Sistem proverava da li je unos validan i ažurira stanje zaliha. Ako količina premašuje raspoloživu zalihu, ide se u alternativni tok A1. 
     \item Ako novo stanje padne ispod definisanog minimuma, sistem generiše obaveštenje za menadžera.
-    \item Veterinar ponavlja korake 2-5 ukoliko ima jos artikala koje je koristio. Ako ih nema, završava unos.
+    \item Veterinar ponavlja korake 2-5 ukoliko ima još artikala koje je koristio. Ako ih nema, završava unos.
     \item Sistem prikazuje opciju veterinaru da doda predlog za nabavku novih artikala.
     Ako veterinar želi da doda predlog, ide se u alternativni tok A2.
 \end{enumerate}
@@ -48,7 +48,7 @@
 \end{figure}
 
 \subsubsection{Kreiranje narudžbine}
-\indent \textbf{Kratak opis} - Menadžer prima obaveštenja o artiklima koje treba naručiti - bilo da je zaliha ispod minimuma ili je veterinar predložio novi artikal - i kreira narudžbenicu na osnovu tih informacija.\\
+\indent \textbf{Kratak opis} - Menadžer prima obaveštenja o artiklima koje treba naručiti - bilo da je zaliha ispod minimuma ili je veterinar predložio novi artikal  i kreira narudžbenicu na osnovu tih informacija.\\
 \indent \textbf{Akteri} - Menadžer\\
 \indent \textbf{Preduslovi} - Menadžer je ulogovan u sistem. Sistem vodi evidenciju zaliha i potrošnje. Sistem može primati predloge od veterinara i detektovati artikle ispod minimuma.\\
 \indent \textbf{Postuslov} - Narudžbenica je kreirana i evidentirana u sistemu. \\
@@ -61,7 +61,7 @@
      \item Menadžer potvrđuje ili menja količine.
     \item Sistem proverava budžet i prikazuje upozorenje ako je prekoračen. Ako narudžbina premašuje budžet ide se u alternativni tok A2.
     
-    \item Koraci 3-6 se ponavljaju za sledece artikle, dok menadžer ne završi izbor artikala.
+    \item Koraci 3-6 se ponavljaju za sledeće artikle, dok menadžer ne završi izbor artikala.
     \item Menadžer kreira narudžbenicu, šalje je dobavljaču i sistem je evidentira.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
@@ -95,7 +95,7 @@
 \indent \textbf{Postuslov} - Katalog dostupnih lekova i materijala je ažuriran. Sistem evidentira primljene količine i datume prijema. \\
 \indent \textbf{Glavni tok:}
 \begin{enumerate}
-    \item Menadzer otvara katalog lekova i opreme.
+    \item Menadžer otvara katalog lekova i opreme.
     \item Sistem prikazuje listu narudžbenica spremnih za prijem.
     \item Menadžer bira narudžbenicu koju prima.
     \item Menadžer unosi stvarno primljene količine za artikal.

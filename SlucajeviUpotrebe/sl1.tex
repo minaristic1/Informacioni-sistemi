@@ -24,7 +24,7 @@
  \item[6.] Sistem validira unete podatke.
  \item[7.] Sistem čuva unete podatke.
  \item[8.] Sistem ažurira tabelu za zakazivanje u bazi podataka.
- \item[9.] Sistem obaveštava vlasnika ljubimca putem mejla da je uspešno zakazo termin.
+ \item[9.] Sistem obaveštava vlasnika ljubimca putem mejla da je uspešno zakazao termin.
 \end{enumerate}
 \indent \textbf{Alternativni tok:}
 \begin{enumerate}
@@ -83,7 +83,7 @@
 
 
 \subsubsection{Slučaj upotrebe: Promena postojećeg termina}
-\indent \textbf{Kratak opis} - Vlasnik ljubimca javlja administrativnom radniku da želi da promeni postojeći zakazan termin. Administrativni radnik menja stari i zakazuje novi pregled. \\
+\indent \textbf{Kratak opis} - Vlasnik ljubimca javlja administrativnom radniku da želi da promeni postojeći zakazan termin. Administrativni radnik briše stari i zakazuje novi pregled. \\
 \indent \textbf{Akteri} - Administrativni radnik, vlasnik ljubimca \\
 \indent \textbf{Preduslovi} - Administrativni radnik je identifikovan, autorizovan za korišćenje sistema i ulogovan u sistemu. Sistem je u funkciji. Vlasnik ljubimca ima zakazan termin pregleda. \\
 \indent \textbf{Postuslovi} - Termin pregleda je promenjen. Zakazan je novi termin i oslobođen stari termin. Baza podataka je ažurirana. \\
@@ -108,7 +108,7 @@
  \item[A4.]\textbf{Tehnički problem pri upisu novog termina.} Administrativni radnik ne može da unese novi termin i pokušava ponovo malo kasnije.
  \item[A5.]\textbf{Nijedan slobodan termin ne odgovara vlasniku.} Ukoliko u koraku 6 nijedan novi slobodan termin pregleda ne odgovara vlasniku ljubimca, administrativni radnik briše prethodno unete podatke. Proces se završava.
 \end{enumerate}
-\indent \textbf{Dodatne informacije} - Vlasnik ljubimca može da promeni postojeći termin pregleda uživo u klinici ili putem telefona. Ukoliko ne postoji zakazan termin, a vlasnik zeli novi onda administrativni radnik unosi i potrebne podatke o vlasniku ljubimca u teblu za zakazivanje, a to su ime i prezime vlasnika ljubimca, broj telefona vlasnika ljubimca, mejl vlasnika ljubimca, vrsta ljubimca, željeni pregled (vakcinacija, intervencija, operacija, kontrolni pregled,...). \\
+\indent \textbf{Dodatne informacije} - Vlasnik ljubimca može da promeni postojeći termin pregleda uživo u klinici ili putem telefona. Ukoliko ne postoji zakazan termin, a vlasnik želi novi onda administrativni radnik unosi i potrebne podatke o vlasniku ljubimca u tabelu za zakazivanje, a to su ime i prezime vlasnika ljubimca, broj telefona vlasnika ljubimca, mejl vlasnika ljubimca, vrsta ljubimca, željeni pregled (vakcinacija, intervencija, operacija, kontrolni pregled,...). \\
 
 \begin{figure}[H]
     \centering
