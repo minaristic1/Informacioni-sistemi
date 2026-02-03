@@ -41,11 +41,11 @@
 
 \indent \textbf{Administrativni radnik}
 \begin{itemize}
-    \item Opis: Izvedena klasa klase Zaposlenis
+    \item Opis: Izvedena klasa klase Zaposleni
     \item Jedan Administrativni radnik može imati 0 ili više Termina (0:N)
 \end{itemize}
 
-\indent \textbf{Menadzer}
+\indent \textbf{Menadžer}
 \begin{itemize}
     \item Opis: Izvedena klasa klase Zaposleni 
     \item Jedan Administrativni radnik može imati 0 ili više Narudzbina (0:N)
@@ -55,7 +55,7 @@
 \begin{itemize}
     \item Opis: Klasa kojoj odgovara tabela koja sadrži osnovne podatke o ljubimcu koji se leči u veterinarskoj klinici.
     \item Atributi: id životinje (broj kartona), ime, vrsta, datum rođenja, vlasnik (FK u tabeli)
-    \item Životinj jednog Vlasnika (1)
+    \item Životinja jednog Vlasnika (1)
     \item Životinja može imati 0 ili više Pregleda (0:N)
 \end{itemize}
 
@@ -102,7 +102,7 @@
     \item Opis: Klasa kojoj odgovara tabela koja sadrži podatke jednoj narudžbini
     \item Atributi: id, menadžer (FK u tabeli), status
     \item Narudžbina može imati 0 ili više stavki (0:N)
-    \item Svakom naruđbinom upravlja jedan menadžer (1)
+    \item Svakom narudžbinom upravlja jedan menadžer (1)
 \end{itemize}
 
 
